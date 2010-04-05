@@ -1,0 +1,12 @@
+!!! 5
+%html
+	%head
+		%title Flickr Slideshow
+	%body
+		%ul
+			- @photos.each do |photo|
+				%li
+					%h1 #{photo['title']}
+					%p #{photo['description']}
+					%a(href="#{photo['url']}")
+						%img(src="#{photo['large_url']}")
