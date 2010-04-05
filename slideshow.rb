@@ -4,6 +4,7 @@ require "sinatra/reloader"
 require "haml"
 require "curb"
 require "nokogiri"
+require "lib/flickr"
 
 # Default is xhtml, do not want!
 set :haml, {:format => :html5 }
@@ -14,12 +15,15 @@ end
 
 get '/user/:who' do
   
+  flickr = Flickr.new
+  user_id = flickr.get_user_id(params[:who])
+  
   # Get Flickr user ID by username and then make the call to Flickr
-  username_call = Curl::Easy.perform(username_url  = "http://api.flickr.com/services/rest/?method=flickr.people.findByUsername&api_key=8242e922f3c5029f480fe8552f42b457&username=#{params[:who]}")
+  #username_call = Curl::Easy.perform(username_url  = "http://api.flickr.com/services/rest/?method=flickr.people.findByUsername&api_key=8242e922f3c5029f480fe8552f42b457&username=#{params[:who]}")
   
   # Grab the "real" user id from Flickr, I don't know why a normal username isn't considered an ID
-  doc = Nokogiri::XML(username_call.body_str)
-  user_id = doc.css('rsp user')[0]['id']
+  #doc = Nokogiri::XML(username_call.body_str)
+  #user_id = doc.css('rsp user')[0]['id']
   
   # Create the Flickr URL and make the call for this user's list of photos
   photos_call = Curl::Easy.perform("http://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos&api_key=8242e922f3c5029f480fe8552f42b457&user_id=#{user_id}&per_page=10")
