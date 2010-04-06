@@ -2,6 +2,7 @@ require "rubygems"
 require "sinatra"
 require "sinatra/reloader"
 require "haml"
+require "sass"
 require "curb"
 require "nokogiri"
 require "lib/flickr"
@@ -9,28 +10,60 @@ require "lib/flickr"
 # Default is xhtml, do not want!
 set :haml, {:format => :html5 }
 
+# Contants
+@root = "http://localhost:4567"
+
 get '/' do
   "hello world"
 end
 
-get '/user/:who' do
+get '/photos/:who' do
   
-  # Create a new Flickr object
+  # Setup some variables we'll use in the template
+  @username = params[:who]
+  @page = 1
+  @page_next = @page + 1
+  @page_prev = @page - 1
+  
+  # Create a new Flickr object and get the user ID
   flickr = Flickr.new
-  
-  # Get the User ID
-  user_id = flickr.get_user_id params[:who]
+  user_id = flickr.get_user_id(@username)
   
   # Get the photos
-  @photos = flickr.get_photos user_id, 1
+  @photos = flickr.get_photos(user_id, @page)
   
   # Render the HAML template
   haml :index
   
 end
 
-get '/user/:who/:page' do
+get '/photos/:who/:page' do
   
-  "With a page number"
+  # Setup some variables we'll use in the template
+  @username = params[:who]
+  @page = Integer(params[:page])
+  @page_next = @page + 1
+  @page_prev = @page - 1
   
+  # Create a new Flickr object and get the user ID
+  flickr = Flickr.new
+  user_id = flickr.get_user_id(@username)
+  
+  # Get the photos
+  @photos = flickr.get_photos(user_id, @page)
+  
+  # Render the HAML template
+  haml :index
+  
+end
+
+# Stylesheets
+get '/style.css' do
+  content_type 'text/css', :charset => 'utf-8'
+  sass :style
+end
+
+get '/reset.css' do
+  content_type 'text/css', :charset => 'utf-8'
+  sass :reset
 end

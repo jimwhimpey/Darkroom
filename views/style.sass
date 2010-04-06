@@ -1,0 +1,36 @@
+// Mix-ins for use later
+=border-radius(!radius)
+	border-radius = !radius
+	-moz-border-radius = !radius
+	-webkit-border-radius = !radius
+
+body
+	background: #000
+	color: #FFF
+	font-family: Helvetica, Verdana, sans-serif
+	
+#wrapper
+	width: 1300px
+	margin: 0 auto
+	
+ul li
+	width: 100%
+	overflow: hidden
+	background: #111
+	padding: 10px
+	margin: 40px 0 0 0
+	border: 1px solid #111
+	+border-radius("5px")
+	
+ul li img, ul li .details
+	float: left
+	
+ul li img 
+	margin: 0 10px 0 0
+	
+ul li .details
+	width: 250px
+
+ul li h2
+	color: #666
+	margin: 0 0 10px 0

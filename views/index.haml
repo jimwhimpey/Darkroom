@@ -2,11 +2,19 @@
 %html
 	%head
 		%title Flickr Slideshow
+		%link{:rel => "stylesheet", :href => "#{@root}/reset.css"}
+		%link{:rel => "stylesheet", :href => "#{@root}/style.css"}
 	%body
-		%ul
-			- @photos.each do |photo|
-				%li
-					%h1 #{photo['title']}
-					%p #{photo['description']}
-					%a(href="#{photo['url']}")
-						%img(src="#{photo['large_url']}")
+		#wrapper
+			%ul
+				- @photos.each do |photo|
+					%li
+						%a(href="#{photo['url']}")
+							%img(src="#{photo['large_url']}")
+						.details
+							%h2 #{photo['title']}
+							%p #{photo['description']}
+			#nav
+				%a(href="#{@root}/#{@username}/photos/#{@page_next}") Next
+				- if @page > 1
+					%a(href="#{@root}/#{@username}/photos/#{@page_prev}") Previous
