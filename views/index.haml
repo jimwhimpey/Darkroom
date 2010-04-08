@@ -2,19 +2,33 @@
 %html
 	%head
 		%title Flickr Slideshow
+		%link{:rel => "stylesheet", :href => "/enamel_brush.css"}
 		%link{:rel => "stylesheet", :href => "#{@root}/reset.css"}
 		%link{:rel => "stylesheet", :href => "#{@root}/style.css"}
 	%body
 		#wrapper
+			#header
+				%img{:src => @user['avatar'], :width => "48", :height => "48"}
+				%h1
+					%a{:href => "http://flickr.com/photos/#{@user['name']}"} #{@user['name']}'s Latest Photos
+				#darkroom
+					%a{:href => "#{@root}"} Darkroom
 			%ul
 				- @photos.each do |photo|
 					%li
 						%a(href="#{photo['url']}")
-							%img(src="#{photo['large_url']}")
+							%img{:src => photo['large_url'], :width => photo['width'], :height => photo['height']}
 						.details
-							%h2 #{photo['title']}
-							%p #{photo['description']}
+							%h2
+								%a{:href => photo['url']}=photo['title']
+							%p!= "#{photo['description']}"
+							- if photo['comments'] == 1
+								%p{:class => "comments"}
+									%a{:href => "#{photo['url']}#comments"} #{photo['comments']} comment
+							- else 
+								%p{:class => "comments"} 
+									%a{:href => "#{photo['url']}#comments"} #{photo['comments']} comments
 			#nav
-				%a(href="#{@root}/#{@username}/photos/#{@page_next}") Next
+				%a{:href => "#{@root}/#{@username}/photos/#{@page_next}", :id => "older"} Older
 				- if @page > 1
-					%a(href="#{@root}/#{@username}/photos/#{@page_prev}") Previous
+					%a{:href => "#{@root}/#{@username}/photos/#{@page_prev}", :id => "newer"} Newer

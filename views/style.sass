@@ -1,8 +1,14 @@
+// ==========================================
 // Mix-ins for use later
+
 =border-radius(!radius)
 	border-radius = !radius
 	-moz-border-radius = !radius
 	-webkit-border-radius = !radius
+
+
+// ==========================================
+// Body and site wide wrappers
 
 body
 	background: #000
@@ -11,26 +17,106 @@ body
 	
 #wrapper
 	width: 1300px
-	margin: 0 auto
+	margin: 20px auto
 	
-ul li
+a
+	text-decoration: none
+
+
+// ==========================================
+// Header
+
+#header
+	position: relative
+
+#header img
+	float: left
+	margin: 0 20px 0 0
+	border: 5px solid #111
+
+#header h1
+	font-size: 20px
+	margin: 15px 0 0 0
+	
+#header h1 a
+	color: #666
+
+#header h1 a:hover
+	color: #FFF
+	
+#header #darkroom
+	position: absolute
+	top: 30px
+	right: 40px
+	text-align: right
+	
+#header #darkroom a
+	font-family: "EnamelBrushRegular-1", "EnamelBrushRegular-2", Helvetica, sans-serif
+	font-size: 35px
+	color: #FFF
+
+#header #darkroom a:hover
+	color: #666
+
+
+// ==========================================
+// List of the Flickr photos
+
+ul
+	padding: 40px 0 0 0
+	line-height: 1.5em
+
+ul li,
+#nav,
+#header
 	width: 100%
 	overflow: hidden
-	background: #111
-	padding: 10px
-	margin: 40px 0 0 0
-	border: 1px solid #111
-	+border-radius("5px")
+	padding: 20px
+	border-top: 1px solid #222
+	background: -webkit-gradient(linear, 0% 0%, 0% 50%, from(#111), to(#000))
+
+#header
+	padding-bottom: 0
 	
 ul li img, ul li .details
 	float: left
 	
 ul li img 
-	margin: 0 10px 0 0
+	margin: 0 20px 0 0
 	
 ul li .details
-	width: 250px
+	width: 240px
 
 ul li h2
-	color: #666
 	margin: 0 0 10px 0
+	font-size: 18px
+	font-weight: bold
+	
+ul li a
+	text-decoration: none
+	color: #666
+	
+ul li a:hover
+	color: #888
+	
+ul li p
+	font-size: 14px
+	color: #444
+	margin: 0 0 10px 0
+
+
+// ==========================================
+// Navigation
+
+#nav
+	font-size: 50px
+	
+#nav #older
+	float: left
+	text-align: left
+
+#nav #newer
+	float: right
+	text-align: right
+	
+	
