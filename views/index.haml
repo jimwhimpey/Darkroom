@@ -3,6 +3,7 @@
 	%head
 		%title Flickr Slideshow
 		%link{:rel => "stylesheet", :href => "/enamel_brush.css"}
+		%link{:rel => "stylesheet", :href => "/museo.css"}
 		%link{:rel => "stylesheet", :href => "#{@root}/reset.css"}
 		%link{:rel => "stylesheet", :href => "#{@root}/style.css"}
 	%body
@@ -11,8 +12,9 @@
 				%img{:src => @user['avatar'], :width => "48", :height => "48"}
 				%h1
 					%a{:href => "http://flickr.com/photos/#{@user['name']}"} #{@user['name']}'s Latest Photos
+					%p{:id => "blurb"} Page 1 of 235
 				#darkroom
-					%a{:href => "#{@root}"} Darkroom
+					%a{:href => "#{@root}"} Darkroom&nbsp;
 			%ul
 				- @photos.each do |photo|
 					%li

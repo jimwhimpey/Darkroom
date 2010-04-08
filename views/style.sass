@@ -6,6 +6,10 @@
 	-moz-border-radius = !radius
 	-webkit-border-radius = !radius
 
+=transistion(!argue)
+	-webkit-transition = !argue
+	transition = !argue
+
 
 // ==========================================
 // Body and site wide wrappers
@@ -22,12 +26,24 @@ body
 a
 	text-decoration: none
 
+a:hover
+	border-bottom: 1px solid #666
+
 
 // ==========================================
 // Header
 
 #header
 	position: relative
+	height: 58px
+	padding-bottom: 0
+
+#header *
+	opacity: 0.7
+	+transistion("opacity 0.5s linear")
+	
+#header:hover *
+	opacity: 1
 
 #header img
 	float: left
@@ -35,18 +51,26 @@ a
 	border: 5px solid #111
 
 #header h1
-	font-size: 20px
-	margin: 15px 0 0 0
-	
-#header h1 a
-	color: #666
+	font-size: 18px
+	font-weight: bold
+	margin: 10px 0 0 0
 
-#header h1 a:hover
-	color: #FFF
-	
+#header h1 a
+	color: #777
+
+#header h1 a:hover,
+#header #darkroom a:hover
+	opacity: 1
+
+#header p#blurb
+	color: #666
+	font-weight: normal
+	font-size: 14px
+	margin: 8px 0 0 0
+
 #header #darkroom
 	position: absolute
-	top: 30px
+	top: 35px
 	right: 40px
 	text-align: right
 	
@@ -54,9 +78,6 @@ a
 	font-family: "EnamelBrushRegular-1", "EnamelBrushRegular-2", Helvetica, sans-serif
 	font-size: 35px
 	color: #FFF
-
-#header #darkroom a:hover
-	color: #666
 
 
 // ==========================================
@@ -75,34 +96,37 @@ ul li,
 	border-top: 1px solid #222
 	background: -webkit-gradient(linear, 0% 0%, 0% 50%, from(#111), to(#000))
 
-#header
-	padding-bottom: 0
-	
-ul li img, ul li .details
+ul li img, 
+ul li .details
 	float: left
 	
 ul li img 
 	margin: 0 20px 0 0
 	
-ul li .details
+.details
 	width: 240px
+	opacity: 0.4
+	+transistion("opacity 0.5s linear")
 
-ul li h2
+ul li:hover .details
+	opacity: 1
+
+.details a
+	color: #777
+
+.details h2
 	margin: 0 0 10px 0
 	font-size: 18px
 	font-weight: bold
-	
-ul li a
-	text-decoration: none
-	color: #666
-	
-ul li a:hover
-	color: #888
-	
-ul li p
+
+.details p
 	font-size: 14px
-	color: #444
+	color: #555
 	margin: 0 0 10px 0
+	+transistion("color 0.5s linear")
+
+.details p.comments
+	font-style: italic
 
 
 // ==========================================
