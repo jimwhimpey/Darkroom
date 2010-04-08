@@ -1,5 +1,11 @@
 class Flickr
   
+  @@pages = 1
+  
+  def pages
+    @@pages
+  end
+  
   # Method for getting a Flickr user ID from a username
   def get_user_id username
     
@@ -25,6 +31,9 @@ class Flickr
     # Grab their photos feed
     doc = Nokogiri::XML(photos_call.body_str)
     photos_xml = doc.css('rsp photos photo')
+  
+    # Find the number of pages and set the instance var
+    @@pages = doc.css('rsp photos')[0]['pages']
   
     # Create an array for holding all the photos information
     photos = Array.new
