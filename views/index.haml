@@ -1,7 +1,7 @@
 !!! 5
 %html
 	%head
-		%title Flickr Slideshow
+		%title Darkroom: Big Flickr Slideshow
 		%link{:rel => "stylesheet", :href => "/enamel_brush.css"}
 		%link{:rel => "stylesheet", :href => "/adelle_basic.css"}
 		%link{:rel => "stylesheet", :href => "#{@root}/style.css"}
@@ -34,9 +34,10 @@
 					%a{:href => "#{@root}"} Darkroom
 					by
 					%a{:href => "http://jimwhimpey.com"} Jim Whimpey
-				%a{:href => "#{@root}/#{@username}/photos/#{@page_next}", :id => "older", :class => "nav"}
-					%span &lsaquo;
-					Older
+				- if Integer(@pages) > @page
+					%a{:href => "#{@root}/#{@username}/photos/#{@page_next}", :id => "older", :class => "nav"}
+						%span &lsaquo;
+						Older
 				- if @page > 1
 					%a{:href => "#{@root}/#{@username}/photos/#{@page_prev}", :id => "newer", :class => "nav"}
 						Newer
