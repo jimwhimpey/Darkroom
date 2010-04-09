@@ -35,11 +35,11 @@
 					by
 					%a{:href => "http://jimwhimpey.com"} Jim Whimpey
 				- if Integer(@pages) > @page && Integer(@pages) != @page
-					%a{:href => "#{@root}/#{@username}/photos/#{@page_next}", :id => "older", :class => "nav"}
+					%a{:href => "#{@root}/photos/#{@username}/#{@page_next}", :id => "older", :class => "nav"}
 						%span &lsaquo;
 						Older
 				- if @page > 1
-					%a{:href => "#{@root}/#{@username}/photos/#{@page_prev}", :id => "newer", :class => "nav"}
+					%a{:href => "#{@root}/photos/#{@username}/#{@page_prev}", :id => "newer", :class => "nav"}
 						Newer
 						%span &rsaquo;
 						
