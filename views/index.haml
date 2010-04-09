@@ -34,7 +34,7 @@
 					%a{:href => "#{@root}"} Darkroom
 					by
 					%a{:href => "http://jimwhimpey.com"} Jim Whimpey
-				- if Integer(@pages) > @page
+				- if Integer(@pages) > @page && Integer(@pages) != @page
 					%a{:href => "#{@root}/#{@username}/photos/#{@page_next}", :id => "older", :class => "nav"}
 						%span &lsaquo;
 						Older

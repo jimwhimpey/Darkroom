@@ -60,6 +60,15 @@ class Flickr
       large_url = large[0]['source']
       large_width = large[0]['width']
       large_height = large[0]['height']
+      
+      # If the image is wider than 1024 (which can happen when the uploaded picture is 
+      # bigger than 1024 but not big enough to have an original version AND a large version)
+      # we want to artificially resize it down to 1024 wide and also correctly scale the height
+      if (large_width > 1024)
+        ratio = ((1024/large_width)*1000).round / 1000.0
+        new_height = (large_height * ratio).round
+        large_width = 1024
+        large_height = new_height
     
       # Get the title, description, comment count and URL of the photo
       title = info_doc.css('photo title')[0].content
