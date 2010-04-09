@@ -53,7 +53,8 @@ a:hover
 #header h1
 	font-size: 18px
 	font-weight: bold
-	margin: 10px 0 0 0
+	margin: 10px 0 8px 0
+	font-family: "AdelleBasicBold", Helvetica, sans-serif
 
 #header h1 a
 	color: #777
@@ -66,7 +67,6 @@ a:hover
 	color: #666
 	font-weight: normal
 	font-size: 14px
-	margin: 8px 0 0 0
 
 #header #darkroom
 	position: absolute
@@ -133,7 +133,23 @@ ul li:hover .details
 // Navigation
 
 #nav
-	font-size: 50px
+	font-size: 30px
+	font-family: "AdelleBasicBold", Helvetica, sans-serif
+	text-transform: uppercase
+	letter-spacing: 0.2em
+
+#nav a
+	color: #666
+	opacity: 0.4
+	+transistion("opacity 0.5s linear")
+	
+#nav:hover a
+	opacity: 1
+
+#nav span
+	font-size: 40px
+	font-family: "Times New Roman", serif
+	letter-spacing: 0
 	
 #nav #older
 	float: left
