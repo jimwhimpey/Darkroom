@@ -23,10 +23,10 @@ class Flickr
   
   # Method for getting a user's Flickr photos, getting the image URL and some info
   # Returns it all in a nice array full of hashes
-  def get_photos user_id, page
+  def get_photos user_id, page, per_page
     
     # Create the Flickr URL and make the call for this user's list of photos
-    photos_call = Curl::Easy.perform("http://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos&api_key=8242e922f3c5029f480fe8552f42b457&user_id=#{user_id}&per_page=2&page=#{page}")
+    photos_call = Curl::Easy.perform("http://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos&api_key=8242e922f3c5029f480fe8552f42b457&user_id=#{user_id}&per_page=#{per_page}&page=#{page}")
   
     # Grab their photos feed
     doc = Nokogiri::XML(photos_call.body_str)

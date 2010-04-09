@@ -50,7 +50,7 @@ get '/photos/:who/:page' do
   user_id = flickr.get_user_id(@username)
   
   # Get the photos
-  @photos = flickr.get_photos(user_id, @page)
+  @photos = flickr.get_photos(user_id, @page, 2)
   
   # Get the number of pages
   @pages = flickr.pages
