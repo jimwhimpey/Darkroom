@@ -3,8 +3,7 @@
 	%head
 		%title Flickr Slideshow
 		%link{:rel => "stylesheet", :href => "/enamel_brush.css"}
-		%link{:rel => "stylesheet", :href => "/adelle.css"}
-		%link{:rel => "stylesheet", :href => "#{@root}/reset.css"}
+		%link{:rel => "stylesheet", :href => "/adelle_basic.css"}
 		%link{:rel => "stylesheet", :href => "#{@root}/style.css"}
 	%body
 		#wrapper
@@ -31,11 +30,15 @@
 								%p{:class => "comments"} 
 									%a{:href => "#{photo['url']}#comments"} #{photo['comments']} comments
 			#nav
-				%a{:href => "#{@root}/#{@username}/photos/#{@page_next}", :id => "older"}
+				#footer
+					%a{:href => "#{@root}"} Darkroom
+					by
+					%a{:href => "http://jimwhimpey.com"} Jim Whimpey
+				%a{:href => "#{@root}/#{@username}/photos/#{@page_next}", :id => "older", :class => "nav"}
 					%span &lsaquo;
 					Older
 				- if @page > 1
-					%a{:href => "#{@root}/#{@username}/photos/#{@page_prev}", :id => "newer"}
+					%a{:href => "#{@root}/#{@username}/photos/#{@page_prev}", :id => "newer", :class => "nav"}
 						Newer
 						%span &rsaquo;
 						

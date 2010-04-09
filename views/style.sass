@@ -1,14 +1,22 @@
 // ==========================================
-// Mix-ins for use later
+// Reset everything
 
-=border-radius(!radius)
-	border-radius = !radius
-	-moz-border-radius = !radius
-	-webkit-border-radius = !radius
+@import reset.sass
+
+
+// ==========================================
+// SASS stuff for use later
 
 =transistion(!argue)
 	-webkit-transition = !argue
 	transition = !argue
+	
+=block
+	width: 100%
+	overflow: hidden
+	padding: 20px
+	border-top: 1px solid #222
+	background: -webkit-gradient(linear, 0% 0%, 0% 50%, from(#111), to(#000))
 
 
 // ==========================================
@@ -34,50 +42,43 @@ a:hover
 // Header
 
 #header
-	position: relative
 	height: 58px
+	position: relative
 	padding-bottom: 0
-
-#header *
-	opacity: 0.7
-	+transistion("opacity 0.5s linear")
+	+block
+	*
+		opacity: 0.7
+		+transistion("opacity 0.5s linear")
+	img
+		float: left
+		margin: 0 20px 0 0
+		border: 5px solid #111
+	h1
+		font:
+			size: 18px
+			weight: bold
+		margin: 10px 0 8px 0
+		font-family: "AdelleBasicBold", Helvetica, sans-serif
+		a
+			color: #777
+	p#blurb
+		color: #666
+		font:
+			weight: normal
+			size: 14px
+	#darkroom
+		position: absolute
+		top: 35px
+		right: 40px
+		text-align: right
+		a
+			font:
+				family: "EnamelBrushRegular-1", "EnamelBrushRegular-2", Helvetica, sans-serif
+				size: 35px
+			color: #FFF
 	
 #header:hover *
 	opacity: 1
-
-#header img
-	float: left
-	margin: 0 20px 0 0
-	border: 5px solid #111
-
-#header h1
-	font-size: 18px
-	font-weight: bold
-	margin: 10px 0 8px 0
-	font-family: "AdelleBasicBold", Helvetica, sans-serif
-
-#header h1 a
-	color: #777
-
-#header h1 a:hover,
-#header #darkroom a:hover
-	opacity: 1
-
-#header p#blurb
-	color: #666
-	font-weight: normal
-	font-size: 14px
-
-#header #darkroom
-	position: absolute
-	top: 35px
-	right: 40px
-	text-align: right
-	
-#header #darkroom a
-	font-family: "EnamelBrushRegular-1", "EnamelBrushRegular-2", Helvetica, sans-serif
-	font-size: 35px
-	color: #FFF
 
 
 // ==========================================
@@ -86,77 +87,75 @@ a:hover
 ul
 	padding: 40px 0 0 0
 	line-height: 1.5em
-
-ul li,
-#nav,
-#header
-	width: 100%
-	overflow: hidden
-	padding: 20px
-	border-top: 1px solid #222
-	background: -webkit-gradient(linear, 0% 0%, 0% 50%, from(#111), to(#000))
-
-ul li img, 
-ul li .details
-	float: left
-	
-ul li img 
-	margin: 0 20px 0 0
+	li
+		+block
+		img
+			float: left
+			margin: 0 20px 0 0
 	
 .details
+	float: left
 	width: 240px
 	opacity: 0.4
 	+transistion("opacity 0.5s linear")
+	a
+		color: #777
+	h2
+		margin: 0 0 10px 0
+		font-size: 18px
+		font-weight: bold
+	p	
+		font-size: 14px
+		color: #555
+		margin: 0 0 10px 0
+	p.comments
+		font-style: italic
 
 ul li:hover .details
 	opacity: 1
-
-.details a
-	color: #777
-
-.details h2
-	margin: 0 0 10px 0
-	font-size: 18px
-	font-weight: bold
-
-.details p
-	font-size: 14px
-	color: #555
-	margin: 0 0 10px 0
-	+transistion("color 0.5s linear")
-
-.details p.comments
-	font-style: italic
+	
 
 
 // ==========================================
 // Navigation
 
 #nav
-	font-size: 30px
-	font-family: "AdelleBasicBold", Helvetica, sans-serif
-	text-transform: uppercase
-	letter-spacing: 0.2em
+	text-align: center
+	position: relative
+	height: 60px
+	+block
+	a
+		color: #666
+	span
+		font:
+			size: 40px
+			family: "Times New Roman", serif
+		letter-spacing: 0
+	.nav
+		font:
+			size: 30px
+			family: "AdelleBasicBold", Helvetica, sans-serif
+		text-transform: uppercase
+		letter-spacing: 0.2em
+		position: absolute
+		top: 20px
 
-#nav a
-	color: #666
+#nav>*
 	opacity: 0.4
 	+transistion("opacity 0.5s linear")
 	
-#nav:hover a
+#nav:hover>*
 	opacity: 1
-
-#nav span
-	font-size: 40px
-	font-family: "Times New Roman", serif
-	letter-spacing: 0
 	
 #nav #older
-	float: left
 	text-align: left
+	left: 20px
 
 #nav #newer
-	float: right
 	text-align: right
+	right: 20px
 	
-	
+#footer
+	font-size: 14px
+	color: #333
+	padding: 15px 0 0 0
