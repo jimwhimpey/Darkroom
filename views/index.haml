@@ -6,40 +6,34 @@
 		%link{:rel => "stylesheet", :href => "/adelle_basic.css"}
 		%link{:rel => "stylesheet", :href => "#{@root}/style.css"}
 	%body
-		#wrapper
-			#header
-				%img{:src => @user['avatar'], :width => "48", :height => "48"}
-				%h1
-					%a{:href => "http://flickr.com/photos/#{@user['name']}"} #{@user['name']}'s Latest Photos
-				%p{:id => "blurb"} Page #{@page} of #{@pages}
-				#darkroom
-					%a{:href => "#{@root}"} Darkroom&nbsp;
+		#home
+			%h1 Darkroom
+			%p{:id => "blurb"} 
+				A big Flickr slideshow by 
+				%a{:href => "http://jimwhimpey.com"} Jim Whimpey
+			%h2 Usage
+			%p http://darkroom.heroku.com/photos/[Flickr username]
+			%h2 Examples
 			%ul
-				- @photos.each do |photo|
-					%li
-						%a(href="#{photo['url']}")
-							%img{:src => photo['large_url'], :width => photo['width'], :height => photo['height']}
-						.details
-							%h2
-								%a{:href => photo['url']}=photo['title']
-							%p!= "#{photo['description']}"
-							- if photo['comments'] == 1
-								%p{:class => "comments"}
-									%a{:href => "#{photo['url']}#comments"} #{photo['comments']} comment
-							- else 
-								%p{:class => "comments"} 
-									%a{:href => "#{photo['url']}#comments"} #{photo['comments']} comments
-			#nav
-				#footer
-					%a{:href => "#{@root}"} Darkroom
-					by
-					%a{:href => "http://jimwhimpey.com"} Jim Whimpey
-				- if Integer(@pages) > @page && Integer(@pages) != @page
-					%a{:href => "#{@root}/photos/#{@username}/#{@page_next}", :id => "older", :class => "nav"}
-						%span &lsaquo;
-						Older
-				- if @page > 1
-					%a{:href => "#{@root}/photos/#{@username}/#{@page_prev}", :id => "newer", :class => "nav"}
-						Newer
-						%span &rsaquo;
-						
+				%li
+					%a{:href => "http://darkroom.heroku.com/photos/jimwhimpey"} http://darkroom.heroku.com/photos/jimwhimpey
+				%li
+					%a{:href => "http://darkroom.heroku.com/photos/exit343"} http://darkroom.heroku.com/photos/exit343
+				%li
+					%a{:href => "http://darkroom.heroku.com/photos/nuzz"} http://darkroom.heroku.com/photos/nuzz
+			%h2 Why?
+			%p
+				:markdown
+					The photo size on Flickr photo pages is too small and you can't navigate between photos
+					in any larger view. Darkroom presents photos nice and big with the best kind of navigation, scrolling.
+					[I Hardly Know Her](http://ihardlyknowher.com/) tackled this problem long before Darkroom but falls 
+					tantalisingly short. Plus, I wanted to learn Ruby, HAML, SASS and Sinatra.
+			%h2 To Do
+			%ul{:id => "todo"}
+				%li Make faster
+				%li Set view
+				%li Tag view
+			%h2 Code
+			%p
+				Is free to use at 
+				%a{:href => "http://github.com/jimwhimpey/Darkroom"} github.com/jimwhimpey/Darkroom

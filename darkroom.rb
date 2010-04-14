@@ -6,6 +6,7 @@ require "sass"
 require "curb"
 require "nokogiri"
 require "lib/flickr"
+require 'maruku'
 
 # Default is xhtml, do not want!
 set :haml, {:format => :html5 }
@@ -14,7 +15,10 @@ set :haml, {:format => :html5 }
 @root = "http://localhost:4567"
 
 get '/' do
-  "hello world"
+  
+  # Render the HAML template
+  haml :index
+  
 end
 
 get '/photos/:who' do
@@ -33,7 +37,7 @@ get '/photos/:who' do
   @photos = flickr.get_photos(user_id, @page)
   
   # Render the HAML template
-  haml :index
+  haml :photos
   
 end
 
@@ -59,7 +63,7 @@ get '/photos/:who/:page' do
   @user = flickr.get_user_info(user_id)
   
   # Render the HAML template
-  haml :index
+  haml :photos
   
 end
 
