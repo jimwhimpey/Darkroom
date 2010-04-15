@@ -24,7 +24,7 @@ end
 get '/photos/:who' do
   
   # Setup some variables we'll use in the template
-  @username = params[:who]
+  @username = params[:who].gsub /\s/, '+'
   @page = 1
   @page_next = @page + 1
   @page_prev = @page - 1
@@ -34,7 +34,13 @@ get '/photos/:who' do
   user_id = flickr.get_user_id(@username)
   
   # Get the photos
-  @photos = flickr.get_photos(user_id, @page)
+  @photos = flickr.get_photos(user_id, @page, 10)
+  
+  # Get the number of pages
+  @pages = flickr.pages
+  
+  # Get user info
+  @user = flickr.get_user_info(user_id)
   
   # Render the HAML template
   haml :photos
