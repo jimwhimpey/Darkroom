@@ -16,7 +16,14 @@ class Flickr
     
     # Grab the "real" user id from Flickr, I don't know why a normal username isn't considered an ID
     doc = Nokogiri::XML(username_call.body_str)
-    user_id = doc.css('rsp user')[0]['id']
+
+    # Check to see if the user was found
+    stat = doc.css('rsp')[0]['stat']
+    if stat == "fail"
+      user_id = "User not found"
+    else
+      user_id = doc.css('rsp user')[0]['id']
+    end
     
     # Return the ID
     return user_id

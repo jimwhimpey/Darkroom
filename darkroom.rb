@@ -38,17 +38,28 @@ get %r{/photos/([a-zA-Z0-9\+]+)(/([0-9]+))?} do
   flickr = Flickr.new
   user_id = flickr.get_user_id(@username)
   
-  # Get the photos
-  @photos = flickr.get_photos(user_id, @page, 10)
+  # Check for errors
+  if (user_id = "User not found")
   
-  # Get the number of pages
-  @pages = flickr.pages
+    # ERROR! User was not found
+    haml :error
   
-  # Get user info
-  @user = flickr.get_user_info(user_id)
+  else
+    
+    # All is good, continue on our way
+    # Get the photos
+    @photos = flickr.get_photos(user_id, @page, 10)
   
-  # Render the HAML template
-  haml :photos
+    # Get the number of pages
+    @pages = flickr.pages
+  
+    # Get user info
+    @user = flickr.get_user_info(user_id)
+  
+    # Render the HAML template
+    haml :photos
+    
+  end
   
 end
 
