@@ -21,37 +21,16 @@ get '/' do
   
 end
 
-get '/photos/:who' do
-  
-  # Setup some variables we'll use in the template
-  @username = params[:who].gsub /\s/, '+'
-  @page = 1
-  @page_next = @page + 1
-  @page_prev = @page - 1
-  
-  # Create a new Flickr object and get the user ID
-  flickr = Flickr.new
-  user_id = flickr.get_user_id(@username)
-  
-  # Get the photos
-  @photos = flickr.get_photos(user_id, @page, 10)
-  
-  # Get the number of pages
-  @pages = flickr.pages
-  
-  # Get user info
-  @user = flickr.get_user_info(user_id)
-  
-  # Render the HAML template
-  haml :photos
-  
-end
+#get '/photos/:who/:page' do
+get %r{/photos/([a-zA-Z0-9\+]+)(/([0-9]+))?} do
 
-get '/photos/:who/:page' do
-  
   # Setup some variables we'll use in the template
-  @username = params[:who]
-  @page = Integer(params[:page])
+  @username = params[:captures][0]
+  if params[:captures][2] == nil
+    @page = 1
+  else
+    @page = Integer(params[:captures][2])
+  end
   @page_next = @page + 1
   @page_prev = @page - 1
   
