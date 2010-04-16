@@ -39,7 +39,7 @@ get %r{/photos/([a-zA-Z0-9\+]+)(/([0-9]+))?} do
   user_id = flickr.get_user_id(@username)
   
   # Check for errors
-  if (user_id = "User not found")
+  if (user_id == "User not found")
   
     # ERROR! User was not found
     haml :error
