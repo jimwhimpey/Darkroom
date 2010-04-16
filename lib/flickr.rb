@@ -12,8 +12,6 @@ class Flickr
     # Get Flickr user ID by username and then make the call to Flickr
     username_call = Curl::Easy.perform(username_url  = "http://api.flickr.com/services/rest/?method=flickr.people.findByUsername&api_key=8242e922f3c5029f480fe8552f42b457&username=#{username}")
     
-    puts "User call: " + username_call.body_str
-    
     # Grab the "real" user id from Flickr, I don't know why a normal username isn't considered an ID
     doc = Nokogiri::XML(username_call.body_str)
 
@@ -36,8 +34,6 @@ class Flickr
     
     # Create the Flickr URL and make the call for this user's list of photos
     photos_call = Curl::Easy.perform("http://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos&api_key=8242e922f3c5029f480fe8552f42b457&user_id=#{user_id}&per_page=#{per_page}&page=#{page}")
-  
-    puts "Photo call: " + photos_call.body_str
   
     # Grab their photos feed
     doc = Nokogiri::XML(photos_call.body_str)
