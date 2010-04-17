@@ -1,6 +1,5 @@
 require "rubygems"
 require "sinatra"
-#require "sinatra/reloader"
 require "haml"
 require "sass"
 require "curb"
@@ -8,24 +7,28 @@ require "nokogiri"
 require "lib/flickr"
 require 'maruku'
 
+configure :development do
+  require "sinatra/reloader"
+  @root = "http://localhost:4567"
+end
+
+configure :production do
+  @root = "http://darkroom.heroku.com"
+end
+
 # Default is xhtml, do not want!
 set :haml, {:format => :html5 }
 
-# Contants
-@root = "http://localhost:4567"
-
 get '/' do
-  
   # Render the HAML template
   haml :index
-  
 end
 
-#get '/photos/:who/:page' do
-get %r{/photos/([a-zA-Z0-9\+]+)(/([0-9]+))?} do
+get %r{/photos/([\+\sa-zA-Z0-9]+)(/([0-9]+))?} do
 
   # Setup some variables we'll use in the template
-  @username = params[:captures][0]
+  @username = params[:captures][0].gsub /\s/, '+'
+  puts @username
   if params[:captures][2] == nil
     @page = 1
   else
