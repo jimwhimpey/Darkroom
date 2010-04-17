@@ -60,6 +60,12 @@ get %r{/photos/([\+\sa-zA-Z0-9]+)(/([0-9]+))?} do
   
 end
 
+helpers do
+  def partial(name)
+    haml(:"_#{name}", :layout => false)
+  end
+end
+
 # Stylesheets
 get '/style.css' do
   content_type 'text/css', :charset => 'utf-8'
