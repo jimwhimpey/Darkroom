@@ -62,11 +62,11 @@ end
 
 # Taken from toolmantim. Heroku seems to need this otherwise it 
 # totally chokes when calling the partial method.
-helpers do
-  def partial(name)
-    haml(:"_#{name}", :layout => false)
-  end
-end
+#helpers do
+#  def partial(name)
+#    haml(:"_#{name}", :layout => false)
+#  end
+#end
 
 # Stylesheets
 get '/style.css' do
