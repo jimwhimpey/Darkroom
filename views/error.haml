@@ -13,4 +13,4 @@
 			%p
 				:markdown
 					User '*#{@username}*' not found
-		!= partial :stats
+		!= haml(:"_stats", :layout => false)

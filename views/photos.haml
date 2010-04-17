@@ -42,4 +42,4 @@
 					%a{:href => "/photos/#{@username}/#{@page_prev}", :id => "newer", :class => "nav"}
 						Newer
 						%span &rsaquo;
-		!= partial :stats
+		!= haml(:"_stats", :layout => false)
