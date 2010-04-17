@@ -19,7 +19,7 @@ get '/' do
   haml :index
 end
 
-get %r{/photos/([\+\sa-zA-Z0-9]+)(/([0-9]+))?} do
+get %r{/photos/([\[\]\(\)\{\}\.\|\_\-\*\+\sa-zA-Z0-9]+)(/([0-9]+))?} do
 
   # Setup some variables we'll use in the template
   @username = params[:captures][0].gsub /\s/, '+'
