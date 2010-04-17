@@ -13,3 +13,4 @@ Thanks to [toolmantim](http://github.com/toolmantim) for his guidance.
 * Set viewing
 * Error handling for non public photos
 * API registration
+* Bookmarklet

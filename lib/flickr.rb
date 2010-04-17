@@ -10,7 +10,7 @@ class Flickr
   def get_user_id username
     
     # Get Flickr user ID by username and then make the call to Flickr
-    username_call = Curl::Easy.perform(username_url  = "http://api.flickr.com/services/rest/?method=flickr.people.findByUsername&api_key=8242e922f3c5029f480fe8552f42b457&username=#{username}")
+    username_call = Curl::Easy.perform("http://api.flickr.com/services/rest/?method=flickr.people.findByUsername&api_key=8242e922f3c5029f480fe8552f42b457&username=#{username}")
     
     # Grab the "real" user id from Flickr, I don't know why a normal username isn't considered an ID
     doc = Nokogiri::XML(username_call.body_str)
@@ -128,6 +128,37 @@ class Flickr
     
     # Return the user's info
     return user
+    
+  end
+  
+  # Method for getting a list of Flickr user's sets
+  def get_sets user_id
+    
+    # Create an array for holding all the set's information
+    sets = Array.new
+    
+    # Make call to the Flickr API
+    sets_call = Curl::Easy.perform("http://api.flickr.com/services/rest/?method=flickr.photosets.getList&api_key=8242e922f3c5029f480fe8552f42b457&user_id=#{user_id}")
+    
+    # Parse the response
+    doc = Nokogiri::XML(sets_call.body_str)
+    
+    # Get the array of sets
+    sets_xml = doc.css('rsp photosets')[0].css('photoset')
+    
+    # Loop through the results 
+    sets_xml.each do |set_xml|
+    
+      # Create hash of this set's data
+      set = Hash[ "id" => set_xml['id'], "title" => set_xml.css('title')[0].content]
+
+      # Add that hash to the photos array
+      sets << set
+    
+    end
+    
+    # Return the sets
+    return sets
     
   end
   

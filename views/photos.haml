@@ -1,10 +1,7 @@
 !!! 5
 %html
 	%head
-		%title Darkroom: Big Flickr Slideshow
-		%link{:rel => "stylesheet", :href => "/enamel_brush.css"}
-		%link{:rel => "stylesheet", :href => "/adelle_basic.css"}
-		%link{:rel => "stylesheet", :href => "/style.css"}
+		!= haml(:"_head", :layout => false)
 	%body
 		#wrapper
 			#header
@@ -14,7 +11,7 @@
 				%p{:id => "blurb"} Page #{@page} of #{@pages}
 				#darkroom
 					%a{:href => "/"} Darkroom&nbsp;
-			%ul
+			%ul{:id => "photos"}
 				- @photos.each do |photo|
 					%li
 						%a(href="#{photo['url']}")

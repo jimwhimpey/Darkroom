@@ -83,7 +83,7 @@ a:hover
 // ==========================================
 // List of the Flickr photos
 
-#wrapper ul
+ul#photos
 	padding: 40px 0 0 0
 	line-height: 1.5em
 	li
@@ -205,4 +205,24 @@ ul li:hover .details
 			font-style: normal
 
 
+// ==========================================
+// Sets Page
 
+#sets
+	+block
+	ul li
+		background-image: none
+		margin: 0 10px 10px 0
+		float: left
+		opacity: 0.5
+		+transistion("opacity 0.5s linear")
+		a
+			display: block
+			padding: 10px
+			color: #999
+		a:hover
+			color: #fff
+			border-bottom: none
+			
+#sets:hover ul li
+	opacity: 1

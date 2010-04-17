@@ -1,10 +1,7 @@
 !!! 5
 %html
 	%head
-		%title Darkroom: Big Flickr Slideshow
-		%link{:rel => "stylesheet", :href => "/enamel_brush.css"}
-		%link{:rel => "stylesheet", :href => "/adelle_basic.css"}
-		%link{:rel => "stylesheet", :href => "/style.css"}
+		!= haml(:"_head", :layout => false)
 	%body
 		#home
 			%h1 Darkroom
@@ -31,6 +28,7 @@
 					tantalisingly short. Plus, I wanted to learn Ruby, HAML, SASS and Sinatra.
 			%h2 To Do
 			%ul{:id => "todo"}
+				%li	Bookmarklet
 				%li Make faster
 				%li Set view
 				%li Tag view

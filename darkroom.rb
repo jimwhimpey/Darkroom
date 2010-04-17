@@ -19,6 +19,36 @@ get '/' do
   haml :index
 end
 
+get %r{/photos/([\[\]\(\)\{\}\.\|\_\-\*\+\sa-zA-Z0-9]+)/sets/?} do
+  
+  # Grab the username
+  @username = params[:captures][0].gsub /\s/, '+'
+  
+  # Create a new Flickr object and get the user ID
+  flickr = Flickr.new
+  user_id = flickr.get_user_id(@username)
+  
+  # Get user info
+  @user = flickr.get_user_info(user_id)
+  
+  # Check for errors
+  if (user_id == "User not found")
+  
+    # ERROR! User was not found
+    haml :error
+  
+  else
+    
+    # Grab the sets
+    @sets = flickr.get_sets(user_id)
+    
+    # Render the HAML template
+    haml :sets
+    
+  end
+  
+end
+
 get %r{/photos/([\[\]\(\)\{\}\.\|\_\-\*\+\sa-zA-Z0-9]+)(/([0-9]+))?} do
 
   # Setup some variables we'll use in the template
