@@ -9,11 +9,6 @@ require 'maruku'
 
 configure :development do
   require "sinatra/reloader"
-  @root = "http://localhost:4567"
-end
-
-configure :production do
-  @root = "http://darkroom.heroku.com"
 end
 
 # Default is xhtml, do not want!
@@ -28,7 +23,6 @@ get %r{/photos/([\+\sa-zA-Z0-9]+)(/([0-9]+))?} do
 
   # Setup some variables we'll use in the template
   @username = params[:captures][0].gsub /\s/, '+'
-  puts @username
   if params[:captures][2] == nil
     @page = 1
   else
