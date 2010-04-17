@@ -19,7 +19,7 @@ get '/' do
   haml :index
 end
 
-get %r{/photos/([\[\]\(\)\{\}\.\|\_\-\*\+\sa-zA-Z0-9]+)/sets/?} do
+get %r{/photos/([\[\]\(\)\{\}\.\|\_\-\*\+\sa-zA-Z0-9]+)/sets/?$} do
   
   # Grab the username
   @username = params[:captures][0].gsub /\s/, '+'
@@ -49,7 +49,16 @@ get %r{/photos/([\[\]\(\)\{\}\.\|\_\-\*\+\sa-zA-Z0-9]+)/sets/?} do
   
 end
 
-get %r{/photos/([\[\]\(\)\{\}\.\|\_\-\*\+\sa-zA-Z0-9]+)(/([0-9]+))?} do
+get %r{/photos/([\[\]\(\)\{\}\.\|\_\-\*\+\sa-zA-Z0-9]+)(/([0-9]+))?(/sets/([0-9]+))?} do
+
+  # Check if we're showing a photostream or a set
+  if params[:captures][4] != nil
+    # We're getting a set
+    set = params[:captures][4]
+  else
+    # Standard photostream
+    set = false
+  end
 
   # Setup some variables we'll use in the template
   @username = params[:captures][0].gsub /\s/, '+'
@@ -75,10 +84,17 @@ get %r{/photos/([\[\]\(\)\{\}\.\|\_\-\*\+\sa-zA-Z0-9]+)(/([0-9]+))?} do
     
     # All is good, continue on our way
     # Get the photos
-    @photos = flickr.get_photos(user_id, @page, 10)
+    @photos = flickr.get_photos(user_id, @page, 10, set)
   
     # Get the number of pages
     @pages = flickr.pages
+    
+    # Set the set name and set var if there is one
+    if params[:captures][4] != nil
+      @set = true
+      @set_id = params[:captures][4]
+      @set_name = flickr.set_name
+    end
   
     # Get user info
     @user = flickr.get_user_info(user_id)

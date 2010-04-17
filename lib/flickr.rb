@@ -6,6 +6,10 @@ class Flickr
     @@pages
   end
   
+  def set_name
+    @@set_name
+  end
+  
   # Method for getting a Flickr user ID from a username
   def get_user_id username
     
@@ -30,17 +34,26 @@ class Flickr
   
   # Method for getting a user's Flickr photos, getting the image URL and some info
   # Returns it all in a nice array full of hashes
-  def get_photos user_id, page, per_page
+  def get_photos user_id, page, per_page, set
     
     # Create the Flickr URL and make the call for this user's list of photos
-    photos_call = Curl::Easy.perform("http://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos&api_key=8242e922f3c5029f480fe8552f42b457&user_id=#{user_id}&per_page=#{per_page}&page=#{page}")
+    if set
+      photos_call = Curl::Easy.perform("http://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=8242e922f3c5029f480fe8552f42b457&photoset_id=#{set}&per_page=#{per_page}&page=#{page}")
+    else  
+      photos_call = Curl::Easy.perform("http://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos&api_key=8242e922f3c5029f480fe8552f42b457&user_id=#{user_id}&per_page=#{per_page}&page=#{page}")
+    end
   
     # Grab their photos feed
     doc = Nokogiri::XML(photos_call.body_str)
-    photos_xml = doc.css('rsp photos photo')
-  
-    # Find the number of pages and set the instance var
-    @@pages = doc.css('rsp photos')[0]['pages']
+    if set
+      photos_xml = doc.css('rsp photoset photo')
+      # Find the number of pages and set the instance var
+      @@pages = doc.css('rsp photoset')[0]['pages']
+    else
+      photos_xml = doc.css('rsp photos photo')
+      # Find the number of pages and set the instance var
+      @@pages = doc.css('rsp photoset')[0]['pages']
+    end
   
     # Create an array for holding all the photos information
     photos = Array.new
@@ -96,6 +109,13 @@ class Flickr
       # Add that hash to the photos array
       photos << photo
     
+    end
+    
+    # If it's a set we want to get the name of the set
+    if set
+      set_call = Curl::Easy.perform("http://api.flickr.com/services/rest/?method=flickr.photosets.getInfo&api_key=8242e922f3c5029f480fe8552f42b457&photoset_id=#{set}")
+      set_doc = Nokogiri::XML(set_call.body_str)
+      @@set_name = set_doc.css('photoset')[0].css('title')[0].content
     end
     
     # Return the data
