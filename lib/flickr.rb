@@ -74,7 +74,7 @@ class Flickr
   
     # Create an array for holding all the photos information
     photos = Array.new
-  
+
     # Loop through each returned photo and make another 
     # API call to get the correct size
     photos_xml.each do |photo_xml|
@@ -82,22 +82,22 @@ class Flickr
       # Make the call for this individual photo's sizes and it's info
       sizes_call = Curl::Easy.perform("http://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=8242e922f3c5029f480fe8552f42b457&photo_id=#{photo_xml['id']}")
       info_call = Curl::Easy.perform("http://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=8242e922f3c5029f480fe8552f42b457&photo_id=#{photo_xml['id']}")
-    
+  
       # Parse the sizes and info XML
       sizes_doc = Nokogiri::XML(sizes_call.body_str)
       info_doc = Nokogiri::XML(info_call.body_str)
-    
+  
       # Find the XML element of the large photo
       large = sizes_doc.css('sizes size[label=Large]')
-      
+    
       # If a large photo isn't found then we'll use the original
       if large.length == 0 then large = sizes_doc.css('sizes size[label=Original]') end
-        
+      
       # Grab the large image's info
       large_url = large[0]['source']
       large_width = large[0]['width']
       large_height = large[0]['height']
-      
+    
       # If the image is wider than 1024 (which can happen when the uploaded picture is 
       # bigger than 1024 but not big enough to have an original version AND a large version)
       # we want to artificially resize it down to 1024 wide and also correctly scale the height
@@ -107,13 +107,13 @@ class Flickr
         large_width = 1024
         large_height = new_height.ceil
       end
-    
+  
       # Get the title, description, comment count and URL of the photo
       title = info_doc.css('photo title')[0].content
       description = info_doc.css('photo description')[0].content
       url = info_doc.css('photo urls url[type=photopage]')[0].content
       comments = info_doc.css('photo comments')[0].content
-    
+  
       # Create hash of this photo's data
       photo = Hash[ "large_url" => large_url,
                     "title" => title,
@@ -122,12 +122,12 @@ class Flickr
                     "comments" => comments,
                     "width" => large_width,
                     "height" => large_height]
-    
+  
       # Add that hash to the photos array
       photos << photo
-    
+  
     end
-    
+  
     # Return the data
     return photos
     
