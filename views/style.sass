@@ -11,6 +11,11 @@
 	-webkit-transition = !argue
 	transition = !argue
 	
+=border-radius(!radius)
+	border-radius = !radius
+	-moz-border-radius = !radius
+	-webkit-border-radius = !radius
+	
 =block
 	width: 1260px
 	overflow: hidden
@@ -189,6 +194,25 @@ ul li:hover .details
 	ul#todo
 		list-style: square
 		margin-left: 15px
+		
+a#bookmarklet
+	display: block
+	background: #848484
+	+border-radius("10px")
+	color: #FFF
+	text-shadow: #000 0 1px 0
+	text-align: center
+	padding: 3px 7px
+	width: 76px
+	margin: 10px 0 10px 0
+	line-height: 1em
+	font:
+		size: 12px
+		weight: bold
+		
+a#bookmarklet:hover
+	border-bottom: none
+	
 	
 
 // ==========================================
