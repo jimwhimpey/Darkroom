@@ -1,6 +1,11 @@
 !!! 5
 %html
 	%head
+		%title			
+			- if @set == true
+				Darkroom &rarr; #{@user['name']} &rarr; sets &rarr; #{@set_name}
+			- else
+				Darkroom &rarr; #{@user['name']}'s Latest Photos
 		!= haml(:"_head", :layout => false)
 	%body
 		#wrapper
@@ -11,10 +16,9 @@
 						%a{:href => "/photos/#{@user['name']}"} #{@user['name']}
 						&rarr; 
 						%a{:href => "/photos/#{@user['name']}/sets"} sets
-						&rarr;
-						%a{:href => "/#{@user['name']}/sets/#{@set_id}"} #{@set_name}
+						&rarr; #{@set_name}
 					- else
-						%a{:href => "/photos/#{@user['name']}"} #{@user['name']}'s Latest Photos
+						#{@user['name']}'s Latest Photos
 				%p{:id => "blurb"} Page #{@page} of #{@pages}
 				#darkroom
 					%a{:href => "/"} Darkroom&nbsp;

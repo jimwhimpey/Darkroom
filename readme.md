@@ -10,7 +10,5 @@ Thanks to [toolmantim](http://github.com/toolmantim) for his guidance.
 
 ## To Do
 
-* Set viewing
-* Error handling for non public photos
-* API registration
-* Bookmarklet
+* Make faster
+* Tag view
