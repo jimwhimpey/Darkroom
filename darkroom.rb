@@ -49,7 +49,7 @@ get %r{/photos/([\[\]\(\)\{\}\.\|\_\-\*\+\sa-zA-Z0-9]+)/sets/?$} do
   
 end
 
-get %r{/photos/([\[\]\(\)\{\}\.\|\_\-\*\+\sa-zA-Z0-9]+)(/([0-9]+))?(/sets/([0-9]+))?} do
+get %r{/photos/([\[\]\(\)\{\}\.\|\_\-\*\+\sa-zA-Z0-9]+)(/([0-9]+))?(/sets/([0-9]+))?(/([0-9]+))?} do
 
   # Check if we're showing a photostream or a set
   if params[:captures][4] != nil
@@ -62,10 +62,14 @@ get %r{/photos/([\[\]\(\)\{\}\.\|\_\-\*\+\sa-zA-Z0-9]+)(/([0-9]+))?(/sets/([0-9]
 
   # Setup some variables we'll use in the template
   @username = params[:captures][0].gsub /\s/, '+'
-  if params[:captures][2] == nil
+  if params[:captures][2] == nil && params[:captures][6] == nil
     @page = 1
   else
-    @page = Integer(params[:captures][2])
+    if params[:captures][4] != nil
+      @page = Integer(params[:captures][6])
+    else
+      @page = Integer(params[:captures][2])
+    end
   end
   @page_next = @page + 1
   @page_prev = @page - 1

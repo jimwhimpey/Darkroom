@@ -45,14 +45,15 @@ class Flickr
   
     # Grab their photos feed
     doc = Nokogiri::XML(photos_call.body_str)
-    if set
+    
+    if set != false
       photos_xml = doc.css('rsp photoset photo')
       # Find the number of pages and set the instance var
       @@pages = doc.css('rsp photoset')[0]['pages']
     else
       photos_xml = doc.css('rsp photos photo')
       # Find the number of pages and set the instance var
-      @@pages = doc.css('rsp photoset')[0]['pages']
+      @@pages = doc.css('rsp photos')[0]['pages']
     end
   
     # Create an array for holding all the photos information
