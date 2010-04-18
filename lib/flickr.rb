@@ -90,41 +90,48 @@ class Flickr
       # Find the XML element of the large photo
       large = sizes_doc.css('sizes size[label=Large]')
     
-      # If a large photo isn't found then we'll use the original
-      if large.length == 0 then large = sizes_doc.css('sizes size[label=Original]') end
-      
-      # Grab the large image's info
-      large_url = large[0]['source']
-      large_width = large[0]['width']
-      large_height = large[0]['height']
+      # Make sure there actually is a large size. There should always at least be an original, no matter 
+      # how small so I'm not sure what's happening here. In any case, if there's no big version returned then
+      # we just skip it.
+      if large.length > 0
     
-      # If the image is wider than 1024 (which can happen when the uploaded picture is 
-      # bigger than 1024 but not big enough to have an original version AND a large version)
-      # we want to artificially resize it down to 1024 wide and also correctly scale the height
-      if (Float(large_width) > 1024)
-        ratio = ((1024/Float(large_width))*1000).round / 1000.0
-        new_height = Float(large_height) * ratio
-        large_width = 1024
-        large_height = new_height.ceil
+        # If a large photo isn't found then we'll use the original
+        if large.length == 0 then large = sizes_doc.css('sizes size[label=Original]') end
+      
+        # Grab the large image's info
+        large_url = large[0]['source']
+        large_width = large[0]['width']
+        large_height = large[0]['height']
+    
+        # If the image is wider than 1024 (which can happen when the uploaded picture is 
+        # bigger than 1024 but not big enough to have an original version AND a large version)
+        # we want to artificially resize it down to 1024 wide and also correctly scale the height
+        if (Float(large_width) > 1024)
+          ratio = ((1024/Float(large_width))*1000).round / 1000.0
+          new_height = Float(large_height) * ratio
+          large_width = 1024
+          large_height = new_height.ceil
+        end
+  
+        # Get the title, description, comment count and URL of the photo
+        title = info_doc.css('photo title')[0].content
+        description = info_doc.css('photo description')[0].content
+        url = info_doc.css('photo urls url[type=photopage]')[0].content
+        comments = info_doc.css('photo comments')[0].content
+  
+        # Create hash of this photo's data
+        photo = Hash[ "large_url" => large_url,
+                      "title" => title,
+                      "description" => description,
+                      "url" => url,
+                      "comments" => comments,
+                      "width" => large_width,
+                      "height" => large_height]
+  
+        # Add that hash to the photos array
+        photos << photo
+
       end
-  
-      # Get the title, description, comment count and URL of the photo
-      title = info_doc.css('photo title')[0].content
-      description = info_doc.css('photo description')[0].content
-      url = info_doc.css('photo urls url[type=photopage]')[0].content
-      comments = info_doc.css('photo comments')[0].content
-  
-      # Create hash of this photo's data
-      photo = Hash[ "large_url" => large_url,
-                    "title" => title,
-                    "description" => description,
-                    "url" => url,
-                    "comments" => comments,
-                    "width" => large_width,
-                    "height" => large_height]
-  
-      # Add that hash to the photos array
-      photos << photo
   
     end
   
