@@ -19,6 +19,9 @@ get '/' do
   haml :index
 end
 
+# ==========================================
+# Sets Page
+
 get %r{/photos/([\[\]\(\)\{\}\.\|\_\-\*\+\sa-zA-Z0-9]+)/sets/?$} do
   
   # Grab the username
@@ -33,21 +36,19 @@ get %r{/photos/([\[\]\(\)\{\}\.\|\_\-\*\+\sa-zA-Z0-9]+)/sets/?$} do
   
   # Check for errors
   if (user_id == "User not found")
-  
     # ERROR! User was not found
     haml :error
-  
   else
-    
-    # Grab the sets
+    # All is good, grab the sets
     @sets = flickr.get_sets(user_id)
-    
     # Render the HAML template
     haml :sets
-    
   end
   
 end
+
+# ==========================================
+# Photostream and Sets Photostream
 
 get %r{/photos/([\[\]\(\)\{\}\.\|\_\-\*\+\sa-zA-Z0-9]+)(/([0-9]+))?(/sets/([0-9]+))?(/([0-9]+))?} do
 
@@ -60,12 +61,14 @@ get %r{/photos/([\[\]\(\)\{\}\.\|\_\-\*\+\sa-zA-Z0-9]+)(/([0-9]+))?(/sets/([0-9]
     set = false
   end
 
-  # Setup some variables we'll use in the template
+  # Grab the username
   @username = params[:captures][0].gsub /\s/, '+'
+  
+  # Set the page variables
   if params[:captures][2] == nil && params[:captures][6] == nil
     @page = 1
   else
-    if params[:captures][4] != nil
+    if set != false
       @page = Integer(params[:captures][6])
     else
       @page = Integer(params[:captures][2])
@@ -94,7 +97,7 @@ get %r{/photos/([\[\]\(\)\{\}\.\|\_\-\*\+\sa-zA-Z0-9]+)(/([0-9]+))?(/sets/([0-9]
     @pages = flickr.pages
     
     # Set the set name and set var if there is one
-    if params[:captures][4] != nil
+    if set != false
       @set = true
       @set_id = params[:captures][4]
       @set_name = flickr.set_name
