@@ -9,15 +9,24 @@
 				A big Flickr slideshow by 
 				%a{:href => "http://jimwhimpey.com"} Jim Whimpey
 			%h2 Usage
-			%p http://darkroom.heroku.com/photos/[Flickr username]
+			%ul
+				%li http://darkroom.heroku.com/photos/[Flickr Username]
+				%li http://darkroom.heroku.com/photos/[Flickr Username]/sets
+				%li http://darkroom.heroku.com/photos/[Flickr Username]/sets/[Set ID]
 			%h2 Examples
 			%ul
 				%li
 					%a{:href => "/photos/jimwhimpey"} http://darkroom.heroku.com/photos/jimwhimpey
 				%li
-					%a{:href => "/photos/lachlan+hardy"} http://darkroom.heroku.com/photos/lachlan+hardy
+					%a{:href => "/photos/Amine+Benboubker/sets"} http://darkroom.heroku.com/photos/Amine+Benboubker/sets
 				%li
-					%a{:href => "/photos/Avanaut"} http://darkroom.heroku.com/photos/Avanaut
+					%a{:href => "/photos/Wolfgang+Bartelme/sets/72157622707212478"} http://darkroom.heroku.com/photos/Wolfgang+Bartelme/sets/72157622707212478
+			%h2 Bookmarklet
+			%p
+				%a{:href => "", :id => "bookmarklet"} Darkroom
+			%p
+				Drag that link into your bookmarks bar. Click it on any Flickr user's photos homepage or set view page to 
+				be redirected to the corresponding page on Darkroom.
 			%h2 Why?
 			%p
 				:markdown
@@ -30,7 +39,6 @@
 			%ul{:id => "todo"}
 				%li	Bookmarklet
 				%li Make faster
-				%li Set view
 				%li Tag view
 			%h2 Code
 			%p
