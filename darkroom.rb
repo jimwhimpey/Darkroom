@@ -17,7 +17,6 @@ set :haml, {:format => :html5 }
 
 get '/' do
   # Render the HAML template
-  puts "©"
   haml :index
 end
 
