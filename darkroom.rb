@@ -17,13 +17,14 @@ set :haml, {:format => :html5 }
 
 get '/' do
   # Render the HAML template
+  puts "©"
   haml :index
 end
 
 # ==========================================
 # Sets Page
 
-get %r{/photos/([\[\]\(\)\{\}\.\|\_\-\*\+\sa-zA-Z0-9]+)/sets/?$} do
+get %r{/photos/([^\/]+)/sets/?$} do
   
   # Grab the username
   @username = params[:captures][0].gsub /\s/, '+'
@@ -51,7 +52,7 @@ end
 # ==========================================
 # Photostream and Sets Photostream
 
-get %r{/photos/([\[\]\(\)\{\}\.\|\_\-\*\+\sa-zA-Z0-9]+)(/([0-9]+))?(/sets/([0-9]+))?(/([0-9]+))?} do
+get %r{/photos/([^\/]+)(/([0-9]+))?(/sets/([0-9]+))?(/([0-9]+))?} do
 
   # Check if we're showing a photostream or a set
   if params[:captures][4] != nil
