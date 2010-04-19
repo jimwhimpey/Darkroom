@@ -13,7 +13,7 @@
 				%img{:src => @user['avatar'], :width => "48", :height => "48"}
 				%h1
 					- if @set == true
-						%a{:href => "/photos/#{@user['name']}"}&=#{@user['name']}
+						%a{:href => "/photos/#{@user['name']}"} #{@user['name']}
 						&rarr; 
 						%a{:href => "/photos/#{@user['name']}/sets"} sets
 						&rarr; #{@set_name}
