@@ -6,6 +6,7 @@ require "curb"
 require "nokogiri"
 require "lib/flickr"
 require 'maruku'
+require 'digest/md5'
 
 configure :development do
   require "sinatra/reloader"

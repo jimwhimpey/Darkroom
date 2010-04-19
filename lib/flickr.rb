@@ -80,7 +80,8 @@ class Flickr
     photos_xml.each do |photo_xml|
 
       # Make the call for this individual photo's sizes and it's info
-      sizes_call = Curl::Easy.perform("http://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=8242e922f3c5029f480fe8552f42b457&photo_id=#{photo_xml['id']}")
+      md5_sig = Digest::MD5.hexdigest("ebbaa3b91e9438e7api_key8242e922f3c5029f480fe8552f42b457auth_token72157623759840095-e01fd1add6cc71famethodflickr.photos.getSizesphoto_id#{photo_xml['id']}")
+      sizes_call = Curl::Easy.perform("http://api.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=8242e922f3c5029f480fe8552f42b457&auth_token=72157623759840095-e01fd1add6cc71fa&photo_id=#{photo_xml['id']}&api_sig=#{md5_sig}")
       info_call = Curl::Easy.perform("http://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=8242e922f3c5029f480fe8552f42b457&photo_id=#{photo_xml['id']}")
   
       # Parse the sizes and info XML
@@ -90,13 +91,13 @@ class Flickr
       # Find the XML element of the large photo
       large = sizes_doc.css('sizes size[label=Large]')
     
+      # If a large photo isn't found then we'll use the original
+      if large.length == 0 then large = sizes_doc.css('sizes size[label=Original]') end
+    
       # Make sure there actually is a large size. There should always at least be an original, no matter 
       # how small so I'm not sure what's happening here. In any case, if there's no big version returned then
       # we just skip it.
       if large.length > 0
-    
-        # If a large photo isn't found then we'll use the original
-        if large.length == 0 then large = sizes_doc.css('sizes size[label=Original]') end
       
         # Grab the large image's info
         large_url = large[0]['source']
