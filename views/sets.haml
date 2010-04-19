@@ -15,6 +15,6 @@
 				%ul
 					- @sets.each do |set|
 						%li
-							%a{:href => "/photos/#{@user['name']}/sets/#{set['id']}"}
+							%a{:href => "/photos/#{@username}/sets/#{set['id']}"}
 								#{set['title']}
 		!= haml(:"_stats", :layout => false)
