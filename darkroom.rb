@@ -17,7 +17,7 @@ set :haml, {:format => :html5 }
 
 get '/' do
   # Render the HAML template
-  haml :index
+  haml :home
 end
 
 # ==========================================

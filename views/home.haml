@@ -10,12 +10,13 @@
 				A big Flickr slideshow by 
 				%a{:href => "http://jimwhimpey.com"} Jim Whimpey
 			%h2 Usage
-			%ul
-				%li http://darkroom.heroku.com/photos/[Flickr Username]
-				%li http://darkroom.heroku.com/photos/[Flickr Username]/sets
-				%li http://darkroom.heroku.com/photos/[Flickr Username]/sets/[Set ID]
+			%ul{:class => "urls"}
+				:markdown
+					* http://darkroom.heroku.com/photos/*Flickr+Username*
+					* http://darkroom.heroku.com/photos/*Flickr+Username*/sets
+					* http://darkroom.heroku.com/photos/*Flickr+Username*/sets/*Set+ID*
 			%h2 Examples
-			%ul
+			%ul{:class => "urls"}
 				%li
 					%a{:href => "/photos/jimwhimpey"} http://darkroom.heroku.com/photos/jimwhimpey
 				%li
@@ -37,12 +38,4 @@
 					best kind of navigation, scrolling.
 					[I Hardly Know Her](http://ihardlyknowher.com/) tackled this problem long before Darkroom but falls 
 					tantalisingly short. Plus, I wanted to learn Ruby, HAML, SASS and Sinatra.
-			%h2 To Do
-			%ul{:id => "todo"}
-				%li Make faster
-				%li Tag view
-			%h2 Code
-			%p
-				Is free to use at 
-				%a{:href => "http://github.com/jimwhimpey/Darkroom"} github.com/jimwhimpey/Darkroom
 		!= haml(:"_stats", :layout => false)
