@@ -31,7 +31,7 @@
 							%h2
 								%a{:href => photo['url']}=photo['title']
 							%p!="#{photo['description']}"
-							- if photo['comments'] == 1
+							- if photo['comments'].to_i == 1
 								%p{:class => "comments"}
 									%a{:href => "#{photo['url']}#comments"} #{photo['comments']} comment
 							- else 
