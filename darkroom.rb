@@ -10,6 +10,9 @@ configure :development do
   require "sinatra/reloader"
 end
 
+# Default is xhtml, do not want!
+set :haml, {:format => :html5}
+
 get '/' do
   # Render the HAML template
   haml :home
