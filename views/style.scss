@@ -1,0 +1,257 @@
+// ==========================================
+// Import font CSS files
+
+@import "/font_adelle_basic.css";
+@import "/font_enamel_brush.css";
+
+
+// ==========================================
+// Reset everything
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td { margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; vertical-align: baseline; background: transparent; } body { line-height: 1; } ol, ul { list-style: none; } blockquote, q { quotes: none; } :focus { outline: 0; } ins { text-decoration: none; } del { text-decoration: line-through; } table { border-collapse: collapse; border-spacing: 0; }
+
+
+// ==========================================
+// SASS stuff for use later
+
+@mixin transistion($argue) {
+	-webkit-transition: $argue;
+	transition: $argue; }
+
+@mixin border-radius($radius) {
+	border-radius: $radius;
+	-moz-border-radius: $radius;
+	-webkit-border-radius: $radius; }
+
+@mixin block {
+	width: 1260px;
+	overflow: hidden;
+	padding: 20px;
+	border-top: 1px solid #222222;
+	background: -webkit-gradient(linear, 0% 0%, 0% 50%, from(#111111), to(black)); }
+
+// ==========================================
+// Body and site wide wrappers
+
+body {
+	background: black;
+	color: white;
+	font-family: Helvetica, Verdana, sans-serif;  }
+
+#wrapper {
+	width: 1300px;
+	margin: 20px auto; }
+
+a {
+	text-decoration: none; }
+
+a:hover {
+	border-bottom: 1px solid #666666; }
+
+// ==========================================
+// Header
+
+#header {
+	height: 58px;
+	position: relative;
+	padding-bottom: 0;
+	@include block;
+	* {
+		opacity: 0.7;
+		@include transistion(unquote(unquote("opacity 0.5s linear"))); }
+	img {
+		float: left;
+		margin: 0 20px 0 0;
+		border: 5px solid #111111; }
+	h1 {
+		font: {
+			size: 18px;
+			family: "AdelleBasicBold", Helvetica, sans-serif; };
+		margin: 10px 0 8px 0;
+		color: #777777;
+		a {
+			color: #777777; } }
+	p#blurb {
+		color: #666666;
+		font: {
+			weight: normal;
+			size: 14px; }; }
+	#darkroom {
+		position: absolute;
+		top: 35px;
+		right: 40px;
+		text-align: right;
+		a {
+			font: {
+				family: "EnamelBrushRegular", Helvetica, sans-serif;
+				size: 35px; };
+			color: white; } } }
+
+#header:hover * {
+	opacity: 1; }
+
+// ==========================================
+// List of the Flickr photos
+
+ul#photos {
+	padding: 40px 0 0 0;
+	line-height: 1.5em;
+	li {
+		@include block;
+		margin: 0 0 20px 0;
+		img {
+			float: left;
+			margin: 0 20px 0 0; } } }
+
+.details {
+	float: left;
+	width: 210px;
+	opacity: 0.4;
+	@include transistion(unquote(unquote("opacity 0.5s linear")));
+	a {
+		color: #777777; }
+	h2 {
+		font-size: 18px;
+		font-weight: bold; }
+	p {
+		font-size: 14px;
+		color: #555555;
+		margin: 10px 0 0 0; }
+	p.comments {
+		font-style: italic; } }
+
+ul li:hover .details {
+	opacity: 1; }
+
+// ==========================================
+// Navigation
+
+#nav {
+	text-align: center;
+	position: relative;
+	height: 60px;
+	@include block;
+	a {
+		color: #666666; }
+	span {
+		font: {
+			size: 40px;
+			family: "Times New Roman", serif; };
+		letter-spacing: 0; }
+	.nav {
+		font: {
+			size: 30px;
+			family: "AdelleBasicBold", Helvetica, sans-serif; };
+		text-transform: uppercase;
+		letter-spacing: 0.2em;
+		position: absolute;
+		top: 20px; } }
+
+#nav>* {
+	opacity: 0.4;
+	@include transistion(unquote(unquote("opacity 0.5s linear"))); }
+
+#nav:hover>* {
+	opacity: 1; }
+
+#nav #older {
+	text-align: left;
+	left: 20px; }
+
+#nav #newer {
+	text-align: right;
+	right: 20px; }
+
+#footer {
+	font-size: 14px;
+	color: #333333;
+	padding: 15px 0 0 0; }
+
+// ==========================================
+// Home Page
+
+#home,
+#error {
+	width: 500px;
+	margin: 60px auto 0 auto;
+	line-height: 1.5em;
+	h1 {
+		font: {
+			family: "EnamelBrushRegular", Helvetica, sans-serif;
+			size: 55px; };
+		margin: 0 0 10px 0;
+		color: white; }
+	p, ul {
+		color: #b3b3b3;
+		font-size: 14px; }
+	a {
+		color: #ff6fcf; }
+	a:hover {
+		border-bottom: 1px solid #ff6fcf; }
+	p#blurb {
+		color: white; }
+	h2 {
+		border-top: 1px solid #222222;
+		padding: 20px 0 0 0;
+		margin: 20px 0 6px 0;
+		color: white; }
+	ul.urls {
+		font: {
+			family: Monaco, Consolas, "Courier News", monospace; };
+		li em {
+			color: #66ccff; } } }
+
+a#bookmarklet {
+	display: block;
+	background: #848484;
+	@include border-radius(unquote(unquote("10px")));
+	color: white;
+	text-shadow: black 0 1px 0;
+	text-align: center;
+	padding: 3px 7px;
+	width: 76px;
+	margin: 10px 0 10px 0;
+	line-height: 1em;
+	font: {
+		size: 12px;
+		weight: bold; }; }
+
+a#bookmarklet:hover {
+	border-bottom: none; }
+
+// ==========================================
+// Error Page
+
+#error {
+	text-align: center;
+	h1 {
+		font-size: 35px;
+		margin-bottom: 80px; }
+	p {
+		font-size: 16px;
+		em {
+			color: #cccccc;
+			font-style: normal; } } }
+
+// ==========================================
+// Sets Page
+
+#sets {
+	margin-top: 40px;
+	@include block;
+	ul li {
+		background-image: none;
+		margin: 0 10px 10px 0;
+		float: left;
+		opacity: 0.5;
+		@include transistion(unquote(unquote("opacity 0.5s linear")));
+		a {
+			display: block;
+			padding: 10px;
+			color: #999999; }
+		a:hover {
+			color: white;
+			border-bottom: none; } } }
+
+#sets:hover ul li {
+	opacity: 1; }

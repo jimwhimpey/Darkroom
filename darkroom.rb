@@ -1,19 +1,14 @@
 require "rubygems"
-require "sinatra"
-require "haml"
-require "sass"
 require "curb"
 require "nokogiri"
+require "maruku"
+require "sinatra"
 require "lib/flickr"
-require 'maruku'
 require 'digest/md5'
 
 configure :development do
   require "sinatra/reloader"
 end
-
-# Default is xhtml, do not want!
-set :haml, {:format => :html5 }
 
 get '/' do
   # Render the HAML template
