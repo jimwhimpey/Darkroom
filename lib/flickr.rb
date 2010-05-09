@@ -19,10 +19,25 @@ class Flickr
     # Grab the "real" user id from Flickr, I don't know why a normal username isn't considered an ID
     doc = Nokogiri::XML(username_call.body_str)
 
-    # Check to see if the user was found
-    stat = doc.css('rsp')[0]['stat']
-    if stat == "fail"
-      user_id = "User not found"
+    # Check to see if the user was found, if not we'll see if we can get it
+    # using the URL lookup call. People get confused about how Flickr's usernames work
+    if doc.css('rsp')[0]['stat'] == "fail"
+      
+      # Create a Flickr URL
+      url = CGI::escape("http://flickr.com/photos/" + username);
+      # Make the call
+      username_call = Curl::Easy.perform("http://api.flickr.com/services/rest/?method=flickr.urls.lookupUser&api_key=8242e922f3c5029f480fe8552f42b457&url=#{url}")
+      # Parse the XML
+      doc = Nokogiri::XML(username_call.body_str)
+      
+      # Check if the user is still not found
+      if doc.css('rsp')[0]['stat'] == "fail"
+        user_id = "User not found"
+      else
+        # Get the User ID
+        user_id = doc.css('rsp user')[0]['id']
+      end
+
     else
       user_id = doc.css('rsp user')[0]['id']
     end
