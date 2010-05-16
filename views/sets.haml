@@ -2,19 +2,19 @@
 %html
 	%head
 		%title
-			Darkroom &rarr; #{@user['name']}'s Sets
+			Darkroom &rarr; #{@user['name_encoded_spaces']}'s Sets
 		!= haml(:"_head", :layout => false)
 	%body
 		#wrapper
 			#header
 				%img{:src => @user['avatar'], :width => "48", :height => "48"}
-				%h1 #{@user['name']}'s Sets
+				%h1 #{@user['name_encoded_spaces']}'s Sets
 				#darkroom
 					%a{:href => "/"} Darkroom&nbsp;
 			#sets
 				%ul
 					- @sets.each do |set|
 						%li
-							%a{:href => "/photos/#{@username}/sets/#{set['id']}"}
+							%a{:href => "/photos/#{@user['name_encoded']}/sets/#{set['id']}"}
 								#{set['title']}
 		!= haml(:"_stats", :layout => false)

@@ -172,12 +172,19 @@ class Flickr
     user_iconfarm = user_xml[0]['iconfarm']
     user_name = user_xml.css("username")[0].content
     
+    # Setup the encoder
+    encoder = HTMLEntities.new
+    user_name_encoded = encoder.encode(user_name, :named)
+    user_name_encoded_spaces = user_name_encoded.gsub /\+/, ' '
+    
     # Construct the avatar URL
     avatar = "http://farm#{user_iconfarm}.static.flickr.com/#{user_iconserver}/buddyicons/#{user_nsid}.jpg"
     
     # Add it to a user hash
     user = Hash[  "avatar" => avatar,
-                  "name" => user_name]
+                  "name" => user_name,
+                  "name_encoded" => user_name_encoded,
+                  "name_encoded_spaces" => user_name_encoded_spaces]
     
     # Return the user's info
     return user

@@ -2,3 +2,4 @@ curb --version 0.6.7
 nokogiri
 maruku
 haml --version 3.0.0.rc.2
+htmlentities

@@ -5,13 +5,14 @@ require "maruku"
 require "sinatra"
 require "lib/flickr"
 require 'digest/md5'
+require 'htmlentities'
 
 configure :development do
   require "sinatra/reloader"
 end
 
 # Default is xhtml, do not want!
-set :haml, {:format => :html5}
+set :haml, {:format => :html5, :escape_html => false}
 
 get '/' do
   # Render the HAML template

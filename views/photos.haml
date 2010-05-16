@@ -1,11 +1,11 @@
 !!! 5
 %html
 	%head
-		%title			
+		%title
 			- if @set == true
-				Darkroom &rarr; #{@user['name']} &rarr; sets &rarr; #{@set_name}
+				Darkroom &rarr; #{@user['name_encoded_spaces']} &rarr; sets &rarr; #{@set_name}
 			- else
-				Darkroom &rarr; #{@user['name']}'s Latest Photos
+				Darkroom &rarr; #{@user['name_encoded_spaces']}'s Latest Photos
 		!= haml(:"_head", :layout => false)
 	%body
 		#wrapper
@@ -13,12 +13,12 @@
 				%img{:src => @user['avatar'], :width => "48", :height => "48"}
 				%h1
 					- if @set == true
-						%a{:href => "/photos/#{@user['name']}"} #{@user['name']}
+						%a{:href => "/photos/#{@user['name']}"} #{@user['name_encoded_spaces']}
 						&rarr; 
 						%a{:href => "/photos/#{@user['name']}/sets"} sets
 						&rarr; #{@set_name}
 					- else
-						#{@user['name']}'s Latest Photos
+						#{@user['name_encoded_spaces']}'s Latest Photos
 				%p{:id => "blurb"} Page #{@page} of #{@pages}
 				#darkroom
 					%a{:href => "/"} Darkroom&nbsp;
@@ -30,7 +30,7 @@
 						.details
 							%h2
 								%a{:href => photo['url']}=photo['title']
-							%p!="#{photo['description']}"
+							%p #{photo['description']}
 							- if photo['comments'].to_i == 1
 								%p{:class => "comments"}
 									%a{:href => "#{photo['url']}#comments"} #{photo['comments']} comment
@@ -44,20 +44,20 @@
 					%a{:href => "http://jimwhimpey.com"} Jim Whimpey
 				- if Integer(@pages) > @page && Integer(@pages) != @page
 					- if @set == true
-						%a{:href => "/photos/#{@username}/sets/#{@set_id}/#{@page_next}", :id => "older", :class => "nav"}
+						%a{:href => "/photos/#{@user['name_encoded']}/sets/#{@set_id}/#{@page_next}", :id => "older", :class => "nav"}
 							%span &lsaquo;
 							Older
 					- else
-						%a{:href => "/photos/#{@username}/#{@page_next}", :id => "older", :class => "nav"}
+						%a{:href => "/photos/#{@user['name_encoded']}/#{@page_next}", :id => "older", :class => "nav"}
 							%span &lsaquo;
 							Older
 				- if @page > 1
 					- if @set == true
-						%a{:href => "/photos/#{@username}/sets/#{@set_id}/#{@page_prev}", :id => "newer", :class => "nav"}
+						%a{:href => "/photos/#{@user['name_encoded']}/sets/#{@set_id}/#{@page_prev}", :id => "newer", :class => "nav"}
 							Newer
 							%span &rsaquo;
 					- else
-						%a{:href => "/photos/#{@username}/#{@page_prev}", :id => "newer", :class => "nav"}
+						%a{:href => "/photos/#{@user['name_encoded']}/#{@page_prev}", :id => "newer", :class => "nav"}
 							Newer
 							%span &rsaquo;
 		!= haml(:"_stats", :layout => false)
