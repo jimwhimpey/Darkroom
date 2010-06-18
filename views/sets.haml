@@ -8,7 +8,7 @@
 		#wrapper
 			#header
 				%img{:src => @user['avatar'], :width => "48", :height => "48"}
-				%h1 #{@user['name_encoded_spaces']}'s Sets
+				%h1{:id => "setheader"} #{@user['name_encoded_spaces']}'s Sets
 				#darkroom
 					%a{:href => "/"} Darkroom&nbsp;
 			#sets

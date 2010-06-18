@@ -1,9 +1,10 @@
-require "rubygems"
-require "curb"
-require "nokogiri"
-require "maruku"
-require "sinatra"
-require "lib/flickr"
+require 'rubygems'
+require 'haml'
+require 'sinatra'
+require 'curb'
+require 'nokogiri'
+require 'maruku'
+require 'lib/flickr'
 require 'digest/md5'
 require 'htmlentities'
 
@@ -111,15 +112,4 @@ get %r{/photos/([^\/]+)(/([0-9]+))?(/sets/([0-9]+))?(/([0-9]+))?} do
     
   end
   
-end
-
-# Stylesheets
-get '/style.css' do
-  content_type 'text/css', :charset => 'utf-8'
-  sass :style
-end
-
-get '/reset.css' do
-  content_type 'text/css', :charset => 'utf-8'
-  sass :reset
 end

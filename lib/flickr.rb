@@ -174,8 +174,8 @@ class Flickr
     
     # Setup the encoder
     encoder = HTMLEntities.new
-    user_name_encoded = encoder.encode(user_name, :named)
-    user_name_encoded_spaces = user_name_encoded.gsub /\+/, ' '
+    user_name_encoded = encoder.encode(user_name.gsub(/\s/, '+'), :named)
+    user_name_encoded_spaces = encoder.encode(user_name.gsub(/\+/, ' '))
     
     # Construct the avatar URL
     avatar = "http://farm#{user_iconfarm}.static.flickr.com/#{user_iconserver}/buddyicons/#{user_nsid}.jpg"

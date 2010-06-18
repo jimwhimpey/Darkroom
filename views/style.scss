@@ -1,7 +1,6 @@
 // ==========================================
 // Import font CSS files
 
-@import "/font_adelle_basic.css";
 @import "/font_enamel_brush.css";
 
 
@@ -14,21 +13,20 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 // ==========================================
 // SASS stuff for use later
 
-@mixin transistion($argue) {
-	-webkit-transition: $argue;
-	transition: $argue; }
-
 @mixin border-radius($radius) {
 	border-radius: $radius;
 	-moz-border-radius: $radius;
-	-webkit-border-radius: $radius; }
+	-webkit-border-radius: $radius;
+}
 
 @mixin block {
 	width: 1260px;
 	overflow: hidden;
 	padding: 20px;
-	border-top: 1px solid #222222;
-	background: -webkit-gradient(linear, 0% 0%, 0% 50%, from(#111111), to(black)); }
+	border-top: 1px solid #222;
+	background: -webkit-gradient(linear, 0% 0%, 0% 50%, from(#111), to(black));
+}
+
 
 // ==========================================
 // Body and site wide wrappers
@@ -36,17 +34,15 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 body {
 	background: black;
 	color: white;
-	font-family: Helvetica, Verdana, sans-serif;  }
+	font-family: Helvetica, Verdana, sans-serif;
+	#wrapper {
+		width: 1300px;
+		margin: 20px auto;
+	}
+	a { text-decoration: none; }
+	a:hover { border-bottom: 1px solid #666; }
+}
 
-#wrapper {
-	width: 1300px;
-	margin: 20px auto; }
-
-a {
-	text-decoration: none; }
-
-a:hover {
-	border-bottom: 1px solid #666666; }
 
 // ==========================================
 // Header
@@ -56,26 +52,28 @@ a:hover {
 	position: relative;
 	padding-bottom: 0;
 	@include block;
-	* {
-		opacity: 0.7;
-		@include transistion(unquote(unquote("opacity 0.5s linear"))); }
 	img {
 		float: left;
 		margin: 0 20px 0 0;
-		border: 5px solid #111111; }
+		border: 5px solid #111111;
+	}
 	h1 {
 		font: {
 			size: 18px;
-			family: "AdelleBasicBold", Helvetica, sans-serif; };
+			family: Helvetica, sans-serif; 
+		};
 		margin: 10px 0 8px 0;
-		color: #777777;
-		a {
-			color: #777777; } }
+		color: #FFF;
+		a { color: #777777; }
+	}
+	h1#setheader { margin: 17px 0 0 0; }
 	p#blurb {
-		color: #666666;
+		color: #666;
 		font: {
-			weight: normal;
-			size: 14px; }; }
+			weight: bold;
+			size: 14px; 
+		}; 
+	}
 	#darkroom {
 		position: absolute;
 		top: 35px;
@@ -84,11 +82,13 @@ a:hover {
 		a {
 			font: {
 				family: "EnamelBrushRegular", Helvetica, sans-serif;
-				size: 35px; };
-			color: white; } } }
+				size: 35px;
+			};
+			color: white;
+		}
+	}
+}
 
-#header:hover * {
-	opacity: 1; }
 
 // ==========================================
 // List of the Flickr photos
@@ -101,27 +101,25 @@ ul#photos {
 		margin: 0 0 20px 0;
 		img {
 			float: left;
-			margin: 0 20px 0 0; } } }
-
-.details {
-	float: left;
-	width: 210px;
-	opacity: 0.4;
-	@include transistion(unquote(unquote("opacity 0.5s linear")));
-	a {
-		color: #777777; }
-	h2 {
-		font-size: 18px;
-		font-weight: bold; }
-	p {
-		font-size: 14px;
-		color: #555555;
-		margin: 10px 0 0 0; }
-	p.comments {
-		font-style: italic; } }
-
-ul li:hover .details {
-	opacity: 1; }
+			margin: 0 20px 0 0;
+		}
+		.details {
+			float: left;
+			width: 210px;
+			a { color: #777; }
+			h2 {
+				font-size: 18px;
+				font-weight: bold;
+			}
+			p {
+				font-size: 14px;
+				color: #555555;
+				margin: 10px 0 0 0;
+			}
+			p.comments { font-style: italic; }
+		}
+	}
+}
 
 // ==========================================
 // Navigation
@@ -131,41 +129,41 @@ ul li:hover .details {
 	position: relative;
 	height: 60px;
 	@include block;
-	a {
-		color: #666666; }
+	a { color: #FFF; }
 	span {
 		font: {
-			size: 40px;
-			family: "Times New Roman", serif; };
-		letter-spacing: 0; }
+			size: 35px;
+			family: "Times New Roman", serif;
+		};
+		letter-spacing: 0;
+	}
 	.nav {
 		font: {
-			size: 30px;
-			family: "AdelleBasicBold", Helvetica, sans-serif; };
+			size: 24px;
+			weight: bold;
+			family: Helvetica, sans-serif;
+		};
 		text-transform: uppercase;
-		letter-spacing: 0.2em;
+		letter-spacing: 0.1em;
 		position: absolute;
-		top: 20px; } }
+		top: 20px;
+	}
+	#older {
+		text-align: left;
+		left: 20px;
+	}
+	#newer {
+		text-align: right;
+		right: 20px;
+	}
+	#footer {
+		font-size: 14px;
+		color: #666;
+		padding: 15px 0 0 0; 
+		a { color: #999; }	
+	}
+}	
 
-#nav>* {
-	opacity: 0.4;
-	@include transistion(unquote(unquote("opacity 0.5s linear"))); }
-
-#nav:hover>* {
-	opacity: 1; }
-
-#nav #older {
-	text-align: left;
-	left: 20px; }
-
-#nav #newer {
-	text-align: right;
-	right: 20px; }
-
-#footer {
-	font-size: 14px;
-	color: #333333;
-	padding: 15px 0 0 0; }
 
 // ==========================================
 // Home Page
@@ -178,46 +176,54 @@ ul li:hover .details {
 	h1 {
 		font: {
 			family: "EnamelBrushRegular", Helvetica, sans-serif;
-			size: 55px; };
+			size: 55px; 
+		};
 		margin: 0 0 10px 0;
-		color: white; }
+		color: white;
+	}
 	p, ul {
 		color: #b3b3b3;
-		font-size: 14px; }
-	a {
-		color: #ff6fcf; }
-	a:hover {
-		border-bottom: 1px solid #ff6fcf; }
+		font-size: 14px;
+		a#bookmarklet {
+			display: block;
+			background: #848484;
+			@include border-radius(unquote(unquote("10px")));
+			color: white;
+			text-shadow: black 0 1px 0;
+			text-align: center;
+			padding: 3px 7px;
+			width: 76px;
+			margin: 10px 0 10px 0;
+			line-height: 1em;
+			font: {
+				size: 12px;
+				weight: bold;
+			};
+		}
+		a#bookmarklet:hover { border-bottom: none; }
+	}
+	a { color: #ff6fcf; }
+	a:hover { border-bottom: 1px solid #ff6fcf; }
 	p#blurb {
-		color: white; }
+		color: white;
+		font: {
+			weight: bold;
+		};
+	}
 	h2 {
 		border-top: 1px solid #222222;
 		padding: 20px 0 0 0;
 		margin: 20px 0 6px 0;
-		color: white; }
+		color: white;
+	}
 	ul.urls {
 		font: {
-			family: Monaco, Consolas, "Courier News", monospace; };
-		li em {
-			color: #66ccff; } } }
+			family: Monaco, Consolas, "Courier News", monospace;
+		};
+		li em { color: #66ccff; }
+	}
+}
 
-a#bookmarklet {
-	display: block;
-	background: #848484;
-	@include border-radius(unquote(unquote("10px")));
-	color: white;
-	text-shadow: black 0 1px 0;
-	text-align: center;
-	padding: 3px 7px;
-	width: 76px;
-	margin: 10px 0 10px 0;
-	line-height: 1em;
-	font: {
-		size: 12px;
-		weight: bold; }; }
-
-a#bookmarklet:hover {
-	border-bottom: none; }
 
 // ==========================================
 // Error Page
@@ -226,12 +232,17 @@ a#bookmarklet:hover {
 	text-align: center;
 	h1 {
 		font-size: 35px;
-		margin-bottom: 80px; }
+		margin-bottom: 80px;
+	}
 	p {
 		font-size: 16px;
 		em {
-			color: #cccccc;
-			font-style: normal; } } }
+			color: #CCC;
+			font-style: normal;
+		}
+	}
+}
+
 
 // ==========================================
 // Sets Page
@@ -243,15 +254,15 @@ a#bookmarklet:hover {
 		background-image: none;
 		margin: 0 10px 10px 0;
 		float: left;
-		opacity: 0.5;
-		@include transistion(unquote(unquote("opacity 0.5s linear")));
 		a {
 			display: block;
 			padding: 10px;
-			color: #999999; }
+			color: #999;
+		}
 		a:hover {
 			color: white;
-			border-bottom: none; } } }
+			border-bottom: none;
+		}
+	}
+}
 
-#sets:hover ul li {
-	opacity: 1; }

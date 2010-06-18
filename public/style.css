@@ -1,4 +1,3 @@
-@import url(/font_adelle_basic.css);
 @import url(/font_enamel_brush.css);
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
   margin: 0;
@@ -35,16 +34,13 @@ body {
   background: black;
   color: white;
   font-family: Helvetica, Verdana, sans-serif; }
-
-#wrapper {
-  width: 1300px;
-  margin: 20px auto; }
-
-a {
-  text-decoration: none; }
-
-a:hover {
-  border-bottom: 1px solid #666666; }
+  body #wrapper {
+    width: 1300px;
+    margin: 20px auto; }
+  body a {
+    text-decoration: none; }
+  body a:hover {
+    border-bottom: 1px solid #666; }
 
 #header {
   height: 58px;
@@ -53,26 +49,24 @@ a:hover {
   width: 1260px;
   overflow: hidden;
   padding: 20px;
-  border-top: 1px solid #222222;
+  border-top: 1px solid #222;
   background: -webkit-gradient(linear, 0% 0%, 0% 50%, from(#111111), to(black)); }
-  #header * {
-    opacity: 0.7;
-    -webkit-transition: opacity 0.5s linear;
-    transition: opacity 0.5s linear; }
   #header img {
     float: left;
     margin: 0 20px 0 0;
     border: 5px solid #111111; }
   #header h1 {
     font-size: 18px;
-    font-family: "AdelleBasicBold", Helvetica, sans-serif;
+    font-family: Helvetica, sans-serif;
     margin: 10px 0 8px 0;
-    color: #777777; }
+    color: #FFF; }
     #header h1 a {
       color: #777777; }
+  #header h1#setheader {
+    margin: 17px 0 0 0; }
   #header p#blurb {
-    color: #666666;
-    font-weight: normal;
+    color: #666;
+    font-weight: bold;
     font-size: 14px; }
   #header #darkroom {
     position: absolute;
@@ -84,9 +78,6 @@ a:hover {
       font-size: 35px;
       color: white; }
 
-#header:hover * {
-  opacity: 1; }
-
 ul#photos {
   padding: 40px 0 0 0;
   line-height: 1.5em; }
@@ -94,33 +85,26 @@ ul#photos {
     width: 1260px;
     overflow: hidden;
     padding: 20px;
-    border-top: 1px solid #222222;
+    border-top: 1px solid #222;
     background: -webkit-gradient(linear, 0% 0%, 0% 50%, from(#111111), to(black));
     margin: 0 0 20px 0; }
     ul#photos li img {
       float: left;
       margin: 0 20px 0 0; }
-
-.details {
-  float: left;
-  width: 210px;
-  opacity: 0.4;
-  -webkit-transition: opacity 0.5s linear;
-  transition: opacity 0.5s linear; }
-  .details a {
-    color: #777777; }
-  .details h2 {
-    font-size: 18px;
-    font-weight: bold; }
-  .details p {
-    font-size: 14px;
-    color: #555555;
-    margin: 10px 0 0 0; }
-  .details p.comments {
-    font-style: italic; }
-
-ul li:hover .details {
-  opacity: 1; }
+    ul#photos li .details {
+      float: left;
+      width: 210px; }
+      ul#photos li .details a {
+        color: #777; }
+      ul#photos li .details h2 {
+        font-size: 18px;
+        font-weight: bold; }
+      ul#photos li .details p {
+        font-size: 14px;
+        color: #555555;
+        margin: 10px 0 0 0; }
+      ul#photos li .details p.comments {
+        font-style: italic; }
 
 #nav {
   text-align: center;
@@ -129,42 +113,34 @@ ul li:hover .details {
   width: 1260px;
   overflow: hidden;
   padding: 20px;
-  border-top: 1px solid #222222;
+  border-top: 1px solid #222;
   background: -webkit-gradient(linear, 0% 0%, 0% 50%, from(#111111), to(black)); }
   #nav a {
-    color: #666666; }
+    color: #FFF; }
   #nav span {
-    font-size: 40px;
+    font-size: 35px;
     font-family: "Times New Roman", serif;
     letter-spacing: 0; }
   #nav .nav {
-    font-size: 30px;
-    font-family: "AdelleBasicBold", Helvetica, sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    font-family: Helvetica, sans-serif;
     text-transform: uppercase;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.1em;
     position: absolute;
     top: 20px; }
-
-#nav > * {
-  opacity: 0.4;
-  -webkit-transition: opacity 0.5s linear;
-  transition: opacity 0.5s linear; }
-
-#nav:hover > * {
-  opacity: 1; }
-
-#nav #older {
-  text-align: left;
-  left: 20px; }
-
-#nav #newer {
-  text-align: right;
-  right: 20px; }
-
-#footer {
-  font-size: 14px;
-  color: #333333;
-  padding: 15px 0 0 0; }
+  #nav #older {
+    text-align: left;
+    left: 20px; }
+  #nav #newer {
+    text-align: right;
+    right: 20px; }
+  #nav #footer {
+    font-size: 14px;
+    color: #666;
+    padding: 15px 0 0 0; }
+    #nav #footer a {
+      color: #999; }
 
 #home,
 #error {
@@ -182,6 +158,27 @@ ul li:hover .details {
   #error ul {
     color: #b3b3b3;
     font-size: 14px; }
+    #home p a#bookmarklet, #home ul a#bookmarklet,
+    #error p a#bookmarklet,
+    #error ul a#bookmarklet {
+      display: block;
+      background: #848484;
+      border-radius: 10px;
+      -moz-border-radius: 10px;
+      -webkit-border-radius: 10px;
+      color: white;
+      text-shadow: black 0 1px 0;
+      text-align: center;
+      padding: 3px 7px;
+      width: 76px;
+      margin: 10px 0 10px 0;
+      line-height: 1em;
+      font-size: 12px;
+      font-weight: bold; }
+    #home p a#bookmarklet:hover, #home ul a#bookmarklet:hover,
+    #error p a#bookmarklet:hover,
+    #error ul a#bookmarklet:hover {
+      border-bottom: none; }
   #home a,
   #error a {
     color: #ff6fcf; }
@@ -190,7 +187,8 @@ ul li:hover .details {
     border-bottom: 1px solid #ff6fcf; }
   #home p#blurb,
   #error p#blurb {
-    color: white; }
+    color: white;
+    font-weight: bold; }
   #home h2,
   #error h2 {
     border-top: 1px solid #222222;
@@ -204,25 +202,6 @@ ul li:hover .details {
     #error ul.urls li em {
       color: #66ccff; }
 
-a#bookmarklet {
-  display: block;
-  background: #848484;
-  border-radius: 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  color: white;
-  text-shadow: black 0 1px 0;
-  text-align: center;
-  padding: 3px 7px;
-  width: 76px;
-  margin: 10px 0 10px 0;
-  line-height: 1em;
-  font-size: 12px;
-  font-weight: bold; }
-
-a#bookmarklet:hover {
-  border-bottom: none; }
-
 #error {
   text-align: center; }
   #error h1 {
@@ -231,7 +210,7 @@ a#bookmarklet:hover {
   #error p {
     font-size: 16px; }
     #error p em {
-      color: #cccccc;
+      color: #CCC;
       font-style: normal; }
 
 #sets {
@@ -239,22 +218,16 @@ a#bookmarklet:hover {
   width: 1260px;
   overflow: hidden;
   padding: 20px;
-  border-top: 1px solid #222222;
+  border-top: 1px solid #222;
   background: -webkit-gradient(linear, 0% 0%, 0% 50%, from(#111111), to(black)); }
   #sets ul li {
     background-image: none;
     margin: 0 10px 10px 0;
-    float: left;
-    opacity: 0.5;
-    -webkit-transition: opacity 0.5s linear;
-    transition: opacity 0.5s linear; }
+    float: left; }
     #sets ul li a {
       display: block;
       padding: 10px;
-      color: #999999; }
+      color: #999; }
     #sets ul li a:hover {
       color: white;
       border-bottom: none; }
-
-#sets:hover ul li {
-  opacity: 1; }
