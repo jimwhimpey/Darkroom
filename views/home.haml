@@ -34,9 +34,12 @@
 			%h2 Why?
 			%p
 				:markdown
-					The photo size on Flickr photo pages is too small and you can't navigate between photos
+					<del>The photo size on Flickr photo pages is too small and you can't navigate between photos
 					in any larger view besides the (Flash, yuck!) slideshow. Darkroom presents photos nice and big with the 
-					best kind of navigation, scrolling.
-					[I Hardly Know Her](http://ihardlyknowher.com/) tackled this problem long before Darkroom but falls 
-					tantalisingly short. Plus, I wanted to learn Ruby, HAML, SASS and Sinatra.
+					best kind of navigation, scrolling.</del>
+			%p{:class => "why"}
+				:markdown
+					So after many years Flickr [improved their photo pages](http://blog.flickr.net/en/2010/06/23/a-new-photo-experience-your-photos-happier/) 
+					making Darkroom redundant. My happiness as a Flickr user outweighs my disappointment as Darkroom developer.
+					C'est la vie.
 		!= haml(:"_stats", :layout => false)

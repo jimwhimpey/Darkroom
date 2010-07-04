@@ -201,7 +201,9 @@ ul#photos {
 			};
 		}
 		a#bookmarklet:hover { border-bottom: none; }
+		del { opacity: 0.5; }
 	}
+	p.why { margin-top: 10px; }
 	a { color: #ff6fcf; }
 	a:hover { border-bottom: 1px solid #ff6fcf; }
 	p#blurb {

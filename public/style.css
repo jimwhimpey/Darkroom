@@ -179,6 +179,13 @@ ul#photos {
     #error p a#bookmarklet:hover,
     #error ul a#bookmarklet:hover {
       border-bottom: none; }
+    #home p del, #home ul del,
+    #error p del,
+    #error ul del {
+      opacity: 0.5; }
+  #home p.why,
+  #error p.why {
+    margin-top: 10px; }
   #home a,
   #error a {
     color: #ff6fcf; }
