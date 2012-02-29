@@ -1,3 +1,5 @@
+[See it in action here](http://darkroom.heroku.com/).
+
 A big picture style Flickr photo browser.
 
 Trying to fill a gap in Flickr's photo browsing.
