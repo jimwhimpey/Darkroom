@@ -1,2 +1,2 @@
-require 'darkroom'
+require './darkroom'
 run Sinatra::Application
