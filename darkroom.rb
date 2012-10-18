@@ -4,7 +4,7 @@ require 'sinatra'
 require 'curb'
 require 'nokogiri'
 require 'maruku'
-require 'lib/flickr'
+require './lib/flickr'
 require 'digest/md5'
 require 'htmlentities'
 
